@@ -1,17 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const { uuid } = require('uuidv4');
+const { v4: uuidv4 } = require('uuid');
 
 let grantedApiKeys = [
   {
     username: 'Admin',
-    key: uuid(),
+    key: uuidv4(),
   },
 ];
 
 // GET /new/user
 router.get('/new/:username', (req, res) => {
-  const newApiKey = uuid();
+  const newApiKey = uuidv4();
 
   // username must have value
   if (req.params.username === undefined) {
@@ -25,13 +25,13 @@ router.get('/new/:username', (req, res) => {
   );
   if (userIndex !== -1) {
     // create new api key for this existing user
-    grantedApiKeys[userIndex].key = uuid();
+    grantedApiKeys[userIndex].key = uuidv4();
     res.json(grantedApiKeys[userIndex]);
   } else {
     // create new apikey-user entity
     const newEntity = {
       username: req.params.username,
-      key: uuid(),
+      key: uuidv4(),
     };
 
     grantedApiKeys.push(newEntity);
