@@ -1,20 +1,31 @@
-import React from 'react';
-import './App.css';
+import React, { useState, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
+import axios from 'axios';
 import Header from './components/Header';
 import Main from './components/Main';
-import Login from './components/Login';
+import Login from './components/loginComponents/Login';
+import constants from './constants.json';
+import ResetPassword from './components/loginComponents/ResetPassword';
+import Registration from './components/loginComponents/Registration';
 
-function App() {
+export default function App() {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    axios.get(`${constants.baseUrl}/users`).then((response) => {
+      console.log(response.data.users);
+      setUsers(response.data.users);
+    });
+  }, []);
   return (
     <div className='App'>
       <Header />
       <Switch>
         <Route exact path='/' component={Main} />
         <Route exact path='/login' component={Login} />
+        <Route exact path='/login/password-reset' component={ResetPassword} />
+        <Route exact path='/registration' component={Registration} />
       </Switch>
     </div>
   );
 }
-
-export default App;

@@ -1,0 +1,13 @@
+.loginCallout {
+    padding: 15px 20px;
+    text-align: center;
+    border: 1px solid #d8dee2;
+    border-radius: 5px;
+    margin-top: 16px !important;
+    margin-bottom: 10px;
+}
+
+.link {
+    color: #0366d6;
+    text-decoration: none;
+  }

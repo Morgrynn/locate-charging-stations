@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&family=Roboto+Slab:wght@200&family=Saira+Extra+Condensed:wght@200&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+.mainContainer {
+    display: block;
+}
+
+.responsive {
+    margin-top: 64px !important;
+    padding-right: 16px !important;
+    padding-left: 16px !important;
+}
+
+.container {
+    max-width: 768px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.textMono {
+    margin-bottom: 16px !important;
+    text-align: center;
+    font-family: 'Consolas, Mono, monospace';
+    font-weight: 400 !important;
+    color: #6a737d !important;
+}
+
+.h1 {
+    margin-bottom: 16px !important;
+    text-align: center;
+    font-size: 48px !important;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-weight: 500;
+}
+
+.formContainer {
+    max-width: 544px;
+    margin-bottom: 24px !important;
+}
+
+.regForm {
+    padding-bottom: 15px;
+}
+
+.input {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    overflow: hidden;
+    margin: 0;
+}
