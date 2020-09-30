@@ -1,12 +1,16 @@
 let mysql = require('mysql');
+const dotenv = require('dotenv');
+
+dotenv.config({ path: './.env' });
+
 let pool = null;
 try {
   pool = mysql.createPool({
     connectionLimit: 10,
-    host: 'localhost',
-    user: 'apidemo',
-    password: '123456',
-    database: 'testdb',
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DATABASE,
   });
 } catch (error) {
   console.log('Mysql pool create failed');
