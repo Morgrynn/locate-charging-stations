@@ -13,6 +13,18 @@ router.get('/', (req, res) => {
     });
 });
 
+//  Return information of a single user
+router.get('/:userId', (req, res) => {
+  db.query('SELECT * FROM userList where id = ?', [req.params.userId])
+    .then((results) => {
+      res.json(results);
+    })
+    .catch((error) => {
+      console.error(error);
+      res.sendStatus(500);
+    });
+});
+
 // Post information to users
 router.post('/', (req, res) => {
   db.query('INSERT INTO userList (name, password) VALUES (?,?)', [
