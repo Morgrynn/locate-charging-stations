@@ -1,14 +1,22 @@
 const express = require('express');
 const app = express();
-const port = 4000;
+const port = process.env.PORT || 4000;
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const db = require('./db');
+// const bcrypt = require('bcryptjs');
+// const passport = require('passport');
+// var Strategy = require('passport-http').BasicStrategy;
+
 const userComponent = require('./components/users');
-const apiKeyTest = require('./components/apiKeyTest');
+// const apiKeyTest = require('./components/apiKeyTest');
+// const routesComponent = require('./routes/user');
 
 app.use(bodyParser.json());
 app.use(cors());
+
+// api for charging stations
+// https://api.openchargemap.io/v3/poi/?output=json&countrycode=FI&maxresults=10
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
@@ -36,15 +44,19 @@ app
 /* demonstrate route module/component usage - the dogComponent content is defined in separate file */
 app.use('/users', userComponent);
 
-app.use('/apiKey', apiKeyTest);
+// app.use('/apiKey', apiKeyTest);
+
+// Routes
+// app.use('/user', routesComponent);
 
 /* DB init */
 Promise.all([
-  db.query(`CREATE TABLE IF NOT EXISTS userList(
-      id INT AUTO_INCREMENT PRIMARY KEY,
-      name VARCHAR(32),
-      password VARCHAR(256)
-    )`),
+  db.query(`CREATE TABLE IF NOT EXISTS users(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(32),
+    password VARCHAR(256), 
+    email VARCHAR(256)
+)`),
   // Add more table create statements if you need more tables
 ])
   .then(() => {
@@ -56,6 +68,8 @@ Promise.all([
       console.log('  /hello/{param1}/world/{param2} [GET]');
       console.log('  /world [GET, POST, PUT, DELETE]');
       console.log('\n   /users [GET, POST]');
+      console.log('\n   /users/unprotected-users [GET, POST]');
+      console.log('\n   /users/register [POST]');
       console.log('\n  /apikey/new/{username} [GET]');
       console.log('  /apikey/protected} [GET]');
       console.log(
