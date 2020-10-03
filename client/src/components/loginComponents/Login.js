@@ -1,24 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './Login.module.css';
-import Auth from '../Auth';
+import axios from 'axios';
+import constants from '../../constants.json';
 import imgIcon from '../../images/Electric.png';
-import { Link } from 'react-router-dom';
-import Button from '../Button';
+import { Link, useHistory } from 'react-router-dom';
 
-// User login system which authenticates and authorizes users to access the system
 // TODO
 // make this a modal
-// link to back end
-export default function Login() {
-  // function submitLogin(event) {
-  //   event.preventDefault();
-  //   Auth.authenticate(
-  //     event.target['username'].value,
-  //     event.target['password'].value
-  //   ).then((result) => {
-  //     console.log(result);
-  //   });
-  // }
+
+export default function Login(props) {
+  const [loginUsername, setLoginUsername] = useState('');
+  const [loginPassword, setLoginPassword] = useState('');
+
+  const login = async (event) => {
+    event.preventDefault();
+    try {
+      await axios({
+        url: '/users/login',
+        method: 'post',
+        baseURL: `${constants.baseUrl}`,
+        auth: {
+          username: loginUsername,
+          password: loginPassword,
+        },
+        withCredentials: true,
+      }).then((res) => {
+        console.log('Login successful');
+        props.loginSuccess();
+        props.history.push(props.redirectPathOnSuccess);
+      });
+    } catch (error) {
+      return console.log(error, 'There was an error registering!');
+    }
+  };
 
   return (
     <div className={styles.mainContainer}>
@@ -27,7 +41,7 @@ export default function Login() {
           <img className={styles.img} src={imgIcon} alt='Electric Charger' />
         </div>
         <div className={styles.authForm}>
-          <form className={styles.form}>
+          <form className={styles.form} onSubmit={login}>
             <div className={styles.authFormHeader}>
               <h1 className={styles.h1}>Sign in to LocalCharge</h1>
             </div>
@@ -39,6 +53,7 @@ export default function Login() {
                   type='text'
                   placeholder='Enter Username'
                   name='username'
+                  onChange={(e) => setLoginUsername(e.target.value)}
                 />
               </div>
               <div>
@@ -53,6 +68,7 @@ export default function Login() {
                   type='password'
                   placeholder='Enter Password'
                   name='password'
+                  onChange={(e) => setLoginPassword(e.target.value)}
                 />
               </div>
               <div>
@@ -66,7 +82,7 @@ export default function Login() {
           </form>
           <p className={styles.loginCallout}>
             New to LocalCharge?{' '}
-            <Link className={styles.linktwo} to='/registration'>
+            <Link className={styles.linktwo} to='/users/register'>
               Create an account
             </Link>
             .
