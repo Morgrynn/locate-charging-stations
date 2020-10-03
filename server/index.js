@@ -13,7 +13,12 @@ const userComponent = require('./components/users');
 // const routesComponent = require('./routes/user');
 
 app.use(bodyParser.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: 'http://localhost:3000',
+    credentials: true,
+  })
+);
 
 // api for charging stations
 // https://api.openchargemap.io/v3/poi/?output=json&countrycode=FI&maxresults=10
@@ -68,7 +73,9 @@ Promise.all([
       console.log('  /hello/{param1}/world/{param2} [GET]');
       console.log('  /world [GET, POST, PUT, DELETE]');
       console.log('\n   /users [GET, POST]');
-      console.log('\n   /users/unprotected-users [GET, POST]');
+      console.log('\n   /users/unprotected-users [GET]');
+      console.log('\n   /users/protected-users [GET]');
+      console.log('\n   /users/login [POST]');
       console.log('\n   /users/register [POST]');
       console.log('\n  /apikey/new/{username} [GET]');
       console.log('  /apikey/protected} [GET]');

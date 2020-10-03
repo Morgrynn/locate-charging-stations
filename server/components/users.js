@@ -6,8 +6,7 @@ const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const passportHttp = require('passport-http');
 
-const saltRounds = 10;
-
+// Middleware function to check username and password given against ones stored in database
 passport.use(
   new passportHttp.BasicStrategy(function (username, password, done) {
     db.query('SELECT id, username, password FROM users WHERE username = ?', [
@@ -32,18 +31,30 @@ passport.use(
 );
 
 // GET all unprotected user information from /users/unprotected-users
-router.get('/unprotected-users', (req, res) => {
-  console.log('Successful GET FROM: /users/unprotected-users ');
-  db.query('SELECT * FROM users')
-    .then((results) => {
-      res.json({ users: results });
-    })
-    .catch(() => {
-      res.sendStatus(500);
-    });
-});
+// router.get('/unprotected-users', (req, res) => {
+//   console.log('Successful GET FROM: /users/unprotected-users ');
+//   res.send('Hello There! You are not logged in.');
+// });
 
-// POST an unprotected user information to /users/register
+// Get all protected users information from /users/protected-users
+// passport middleware gets passed to protected data
+// router.get(
+//   '/protected-users',
+//   passport.authenticate('basic', { session: false }),
+//   (req, res) => {
+//     console.log('Successful GET FROM: /users/protected-users ');
+//     db.query('SELECT * FROM users')
+//       .then((results) => {
+//         res.json({ users: results });
+//       })
+//       .catch(() => {
+//         res.sendStatus(500);
+//       });
+//   }
+// );
+
+const saltRounds = 10;
+// POST -  register users to database to /users/register
 router.post('/register', (req, res) => {
   let username = req.body.username.trim();
   let password = req.body.password.trim();
@@ -55,19 +66,30 @@ router.post('/register', (req, res) => {
     typeof password === 'string' &&
     password.length > 6
   ) {
-    bcrypt
-      .hash(password, saltRounds)
-      .then((hash) =>
-        db.query(
-          'INSERT INTO users (username, password, email) VALUES (?,?,?)',
-          [username, hash, email]
-        )
-      )
-      .then((dbResults) => {
-        console.log(dbResults);
-        res.sendStatus(201);
-      })
-      .catch((error) => res.sendStatus(500));
+    db.query(
+      'SELECT * FROM users WHERE (username = ? OR email = ?)',
+      [username, email],
+      function (err, results, fields) {
+        if (results.length == 0) {
+          console.log('Username does not exist', username);
+          bcrypt
+            .hash(password, saltRounds)
+            .then((hash) =>
+              db.query(
+                'INSERT INTO users (username, password, email) VALUES (?,?,?)',
+                [username, hash, email]
+              )
+            )
+            .then((dbResults) => {
+              console.log('dbResults: ', dbResults);
+              res.sendStatus(201);
+            })
+            .catch((error) => res.sendStatus(500));
+        }
+        if (results.length > 0) res.send('Username OR Email Already Exists');
+        if (err) throw err;
+      }
+    );
   } else {
     console.log(
       'incorrect username or password or email, both must be strings and username more than 4 long and password more than 6 characters long'
@@ -76,73 +98,16 @@ router.post('/register', (req, res) => {
   }
 });
 
-// POST an unprotected user information to /users/register
-// router.post('/register', (req, res) => {
-//   let username = req.body.username;
-//   let password = req.body.password;
-//   let email = req.body.email;
-//   const passwordHash = bcrypt.hashSync(password, 8);
-//   // console.log(username, passwordHash);
-//   db.query('INSERT INTO users (username, password, email) VALUES (?,?,?)', [
-//     username,
-//     passwordHash,
-//     email,
-//   ])
-//     .then((results) => {
-//       // res.json(results);
-//       console.log(results);
-//       res.sendStatus(201);
-//     })
-//     .catch((error) => {
-//       console.error(error);
-//       res.sendStatus(500);
-//     });
-// });
-
-//  Return information of a single user
-// router.get('/:userId', (req, res) => {
-//   db.query('SELECT * FROM userList where id = ?', [req.params.userId])
-//     .then((results) => {
-//       res.json(results);
-//     })
-//     .catch((error) => {
-//       console.error(error);
-//       res.sendStatus(500);
-//     });
-// });
-
-// Register information to users table in usersdb
-// router.post('/login', (req, res) => {
-//   const passwordHash = bcrypt.hashSync(req.body.password, 10);
-//   db.query('INSERT INTO userList (name, password) VALUES (?,?)', [
-//     req.body.name,
-//     req.body.email,
-//     passwordHash,
-//   ])
-//     .then((results) => {
-//       console.log(results);
-//       res.sendStatus(200);
-//     })
-//     .catch(() => {
-//       res.sendStatus(500);
-//     });
-// });
-
-// Register information to users table in usersdb
-// router.post('/register', (req, res) => {
-//   const passwordHash = bcrypt.hashSync(req.body.password, 10);
-//   db.query('INSERT INTO userList (name, password) VALUES (?,?)', [
-//     req.body.name,
-//     req.body.email,
-//     passwordHash,
-//   ])
-//     .then((results) => {
-//       console.log(results);
-//       res.sendStatus(200);
-//     })
-//     .catch(() => {
-//       res.sendStatus(500);
-//     });
-// });
+// POST - login with database username and password to /users/login
+router.post(
+  '/login',
+  passport.authenticate('basic', { session: false }),
+  (req, res) => {
+    console.log(req.user);
+    // res.send('Successful authenticated');
+    // res.json({ users: req.user });
+    res.sendStatus(200);
+  }
+);
 
 module.exports = router;
