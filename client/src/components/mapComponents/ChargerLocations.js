@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import MapGl, { Marker, Popup } from 'react-map-gl';
+import Searchbar from '../Searchbar';
+import SearchResult from '../SearchResult';
 import styles from './ChargerLocation.module.css';
 
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
@@ -8,7 +10,7 @@ export default function ChargerLocations(props) {
   const [viewport, setViewport] = useState({
     latitude: 65.0121,
     longitude: 25.4652,
-    width: '100vw',
+    width: '100%',
     height: '80vh',
     zoom: 4,
     bearing: 0,
@@ -25,6 +27,16 @@ export default function ChargerLocations(props) {
         onViewportChange={(viewport) => {
           setViewport(viewport);
         }}>
+        <Searchbar
+          onSearch={props.onSearch}
+          searchLocation={props.searchLocation}
+        />
+        <SearchResult
+          searchLocation={props.searchLocation}
+          location={props.locationDataSet.filter((station) =>
+            station.AddressInfo.Title.includes(props.searchLocation)
+          )}
+        />
         {props.locationDataSet.map((station, index) => (
           <Marker
             key={index}

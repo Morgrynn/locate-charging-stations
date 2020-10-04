@@ -1,0 +1,13 @@
+.locationContainer {
+    width: 100%;
+    font-size: 18px;
+    padding: 11px;
+}
+
+.listItem {
+    width: 20%;
+    font-size: 14px;
+    background-color: grey;
+    border: 1px solid black;
+    list-style-type: none;
+}
