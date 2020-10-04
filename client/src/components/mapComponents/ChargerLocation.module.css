@@ -1,0 +1,17 @@
+.container {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    /* max-width: 90%; */
+}
+
+.icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.icon img {
+    width: 20px;
+    height: 20px;
+}
