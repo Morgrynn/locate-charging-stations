@@ -33,9 +33,7 @@ export default function ChargerLocations(props) {
         />
         <SearchResult
           searchLocation={props.searchLocation}
-          location={props.locationDataSet.filter((station) =>
-            station.AddressInfo.Title.includes(props.searchLocation)
-          )}
+          locationDataSet={props.locationDataSet}
         />
         {props.locationDataSet.map((station, index) => (
           <Marker
@@ -58,22 +56,26 @@ export default function ChargerLocations(props) {
             latitude={selectedStation.AddressInfo.Latitude}
             longitude={selectedStation.AddressInfo.Longitude}
             onClose={() => setSelectedStation(null)}>
-            <div>
-              <h2>{selectedStation.AddressInfo.Title}</h2>
-              <ol>
-                {selectedStation.Connections.map((Connection, index) => {
-                  return (
+            <div className={styles.popup}>
+              <h3>{selectedStation.AddressInfo.Title}</h3>
+
+              {selectedStation.Connections.map((Connection, index) => {
+                return (
+                  <>
+                    <p>
+                      <strong>Connection Type available:</strong>
+                    </p>
                     <li key={index}>
-                      Connection Type: {Connection.ConnectionType.Title} |
-                      Level: {Connection.Level.Title}
+                      {Connection.ConnectionType.Title} | Level:{' '}
+                      {Connection.Level.Title}
                     </li>
-                  );
-                })}
-              </ol>
+                  </>
+                );
+              })}
               <p>
-                Cost:{' '}
-                {selectedStation.UsageCost || selectedStation.UsageType.Title}
+                <strong>Cost:</strong>{' '}
               </p>
+              {selectedStation.UsageCost || selectedStation.UsageType.Title}
             </div>
           </Popup>
         ) : null}
