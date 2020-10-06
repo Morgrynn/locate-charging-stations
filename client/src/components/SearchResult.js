@@ -2,19 +2,29 @@ import React from 'react';
 import styles from './styles/SearchResult.module.css';
 
 export default function SearchResult(props) {
-  let value = props.searchLocation;
-  return (
-    <div className={styles.locationContainer}>
-      {props.location.map((station, i) => {
-        if (value.length > 0) {
+  let filteredLocations = props.locationDataSet.filter((station) => {
+    return (
+      station.AddressInfo.Title.toLowerCase().indexOf(
+        props.searchLocation.toLowerCase()
+      ) !== -1
+    );
+  });
+
+  let displayList = <div></div>;
+
+  if (props.searchLocation.length != 0) {
+    return (displayList = (
+      <>
+        {filteredLocations.map((station, i) => {
           return (
             <li key={i} className={styles.listItem}>
-              {station.AddressInfo.AddressLine1}
+              {station.AddressInfo.Title}
             </li>
           );
-        }
-        return <div key={i}></div>;
-      })}
-    </div>
-  );
+        })}
+      </>
+    ));
+  }
+
+  return <div className={styles.locationContainer}>{displayList}</div>;
 }
