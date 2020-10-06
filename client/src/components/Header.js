@@ -10,7 +10,7 @@ export default function Header() {
           <Link to='/' className={styles.active}>
             Locate Charging Station
           </Link>
-          <Link to='/login'>Login</Link>
+          <Link to='/users/login'>Login</Link>
         </ul>
       </nav>
     </div>
