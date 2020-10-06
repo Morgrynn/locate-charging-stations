@@ -23,7 +23,7 @@ export default function Register() {
           password: registerPassword,
         },
         withCredentials: true,
-      }).then((res) => console.log('Registered Successfully');
+      }).then((res) => console.log('Registered Successfully'));
     } catch (error) {
       return console.log(error, 'There was an error registering!');
     }
