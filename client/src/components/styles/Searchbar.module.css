@@ -1,9 +1,11 @@
 .searchbar {
     width: 100%;
     font-size: 18px;
-    padding: 11px;
+    padding: 10px;
+    margin-right: 10px;
 }
 
 .input {
-    width: 200px;
+    width: 20.5%;
+    height: 30px;
 }
