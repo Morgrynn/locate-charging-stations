@@ -16,24 +16,41 @@ export default function ChargerLocations(props) {
     bearing: 0,
     pitch: 0,
   });
+
   const [selectedStation, setSelectedStation] = useState(null);
+
+  const clickLocation = (latitude, longitude) => {
+    setViewport({
+      ...viewport,
+      latitude: latitude,
+      longitude: longitude,
+      zoom: 15,
+      transitionDuration: 1000,
+    });
+  };
 
   return (
     <div className={styles.container}>
       <MapGl
         {...viewport}
         mapStyle='mapbox://styles/t9haan01/ckfv13pi20ib319oavdqy4q24'
-        mapboxApiAccessToken={MAPBOX_TOKEN}
         onViewportChange={(viewport) => {
           setViewport(viewport);
-        }}>
+        }}
+        mapboxApiAccessToken={MAPBOX_TOKEN}>
         <Searchbar
           onSearch={props.onSearch}
           searchLocation={props.searchLocation}
         />
         <SearchResult
+          checkLogin={props.checkLogin}
+          isAuthenticated={props.isAuthenticated}
           searchLocation={props.searchLocation}
           locationDataSet={props.locationDataSet}
+          clickedLocation={clickLocation}
+          showDropdownMenu={props.showDropdownMenu}
+          hideDropdownMenu={props.hideDropdownMenu}
+          displayMenu={props.displayMenu}
         />
         {props.locationDataSet.map((station, index) => (
           <Marker
@@ -61,15 +78,15 @@ export default function ChargerLocations(props) {
 
               {selectedStation.Connections.map((Connection, index) => {
                 return (
-                  <>
+                  <div key={index}>
                     <p>
                       <strong>Connection Type available:</strong>
                     </p>
-                    <li key={index}>
+                    <li>
                       {Connection.ConnectionType.Title} | Level:{' '}
                       {Connection.Level.Title}
                     </li>
-                  </>
+                  </div>
                 );
               })}
               <p>
@@ -83,3 +100,8 @@ export default function ChargerLocations(props) {
     </div>
   );
 }
+
+// onViewportChange={(viewport) => {
+//   setViewport(viewport);
+// }}
+// mapStyle='mapbox://styles/t9haan01/ckfv13pi20ib319oavdqy4q24'
