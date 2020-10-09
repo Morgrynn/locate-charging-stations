@@ -3,14 +3,14 @@ import styles from './Login.module.css';
 import axios from 'axios';
 import constants from '../../constants.json';
 import imgIcon from '../../images/Electric.png';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // TODO
 // make this a modal
 
 export default function Login(props) {
-  const [loginUsername, setLoginUsername] = useState('');
-  const [loginPassword, setLoginPassword] = useState('');
+  // const [loginUsername, setLoginUsername] = useState('');
+  // const [loginPassword, setLoginPassword] = useState('');
 
   const login = async (event) => {
     event.preventDefault();
@@ -20,8 +20,8 @@ export default function Login(props) {
         method: 'post',
         baseURL: `${constants.baseUrl}`,
         auth: {
-          username: loginUsername,
-          password: loginPassword,
+          username: props.loginUsername,
+          password: props.loginPassword,
         },
         withCredentials: true,
       }).then((res) => {
@@ -53,7 +53,7 @@ export default function Login(props) {
                   type='text'
                   placeholder='Enter Username'
                   name='username'
-                  onChange={(e) => setLoginUsername(e.target.value)}
+                  onChange={props.getUsername}
                 />
               </div>
               <div>
@@ -68,7 +68,7 @@ export default function Login(props) {
                   type='password'
                   placeholder='Enter Password'
                   name='password'
-                  onChange={(e) => setLoginPassword(e.target.value)}
+                  onChange={props.getPassword}
                 />
               </div>
               <div>
