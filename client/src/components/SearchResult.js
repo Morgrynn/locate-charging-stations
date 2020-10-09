@@ -3,38 +3,39 @@ import styles from './styles/SearchResult.module.css';
 import ToggleComponent from './ToggleComponent';
 
 export default function SearchResult(props) {
-  let filteredLocations = props.locationDataSet.filter((station) => {
+  const dataArray = [...props.data, ...props.moreData];
+  let filteredLocations = dataArray.filter((station) => {
     return (
-      station.AddressInfo.Title.toLowerCase().indexOf(
-        props.searchLocation.toLowerCase()
-      ) !== -1
+      (station.AddressInfo.title || station.AddressInfo.line)
+        .toLowerCase()
+        .indexOf(props.searchLocation.toLowerCase()) !== -1
     );
   });
+
+  console.log(filteredLocations);
 
   let displayList = null;
 
   if (props.searchLocation.length !== 0) {
     return (displayList = (
-      <>
-        {filteredLocations.map((station, i) => {
-          {
-            /* console.log(station.AddressInfo.Town); */
-          }
+      <div className={styles.container}>
+        {filteredLocations.slice(0, 3).map((station, i) => {
           return (
             <li
               key={i}
               onClick={() => {
-                props.clickedLocation(
-                  station.AddressInfo.Latitude,
-                  station.AddressInfo.Longitude
+                props.clickLocation(
+                  Number(station.Geometery.latitude),
+                  Number(station.Geometery.longitude)
                 );
               }}
               className={styles.listItem}>
               <p>
-                <strong>Place Name:</strong> {station.AddressInfo.Title}
+                <strong>Place Name:</strong> {station.AddressInfo.title}
               </p>
+              <p>{station.AddressInfo.line}</p>
               <p>
-                <strong>Town:</strong> {station.AddressInfo.Town}
+                <strong>Town:</strong> {station.AddressInfo.town}
               </p>
               <ToggleComponent>
                 {({ on, toggle }) => {
@@ -43,12 +44,12 @@ export default function SearchResult(props) {
                       <button onClick={toggle}>More Inforation ...</button>
                       {on && (
                         <>
-                          <p>{station.AddressInfo.AccessComments}</p>
-                          <p>Cost: {station.UsageCost}</p>
-                          <p>Type: {station.UsageType.Title}</p>
-                          <button onClick={props.checkLogin}>
-                            Charge Vehicle
-                          </button>
+                          <p>Cost: {station.Connections.ConnectType1.price}</p>
+                          <p>
+                            Charge: {station.Connections.ConnectType1.charge}
+                          </p>
+                          <p>Type: {station.Connections.ConnectType1.type}</p>
+                          <p>Speed: {station.Connections.ConnectType1.speed}</p>
                         </>
                       )}
                     </div>
@@ -58,7 +59,7 @@ export default function SearchResult(props) {
             </li>
           );
         })}
-      </>
+      </div>
     ));
   }
 

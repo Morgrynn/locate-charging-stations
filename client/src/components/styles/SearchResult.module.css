@@ -2,22 +2,53 @@
     width: 100%;
     font-size: 18px;
     padding: 11px;
+    
 }
 
-.listItem {
+.container {
+    position: fixed;
+    top: 118px;
+    left: 8px;
     width: 20%;
+    
+}
+
+
+.listItem {
     font-size: 14px;
     list-style-type: none;
     padding: 12px;
     color: black;
-    display: block;
     border-bottom: 1px solid grey;
     background-color: rgba(206, 200, 200, 0.7);
     cursor: pointer;
     overflow: hidden;
     margin-left: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
 .listItem:hover {
     background-color: #eee;
+}
+
+.dropdownMenu {
+    margin: 0;
+    padding: 0;
+    top:45px;
+    right:0px;
+    width: 20%;
+    background-color: white;
+    font-weight:bold;
+
+}
+
+.btn {
+    width:178px;
+    height:18px;
+    background-color:#ff3232 ;
+    padding:12px;
+    border-radius:5px;
+    font-weight:bold;
+    color:white;
 }
