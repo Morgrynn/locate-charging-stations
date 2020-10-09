@@ -2,24 +2,37 @@ import React, { useState } from 'react';
 import MapGl, { Marker, Popup } from 'react-map-gl';
 import Searchbar from '../Searchbar';
 import SearchResult from '../SearchResult';
-import styles from './ChargerLocation.module.css';
+import styles from '../styles/ChargerLocation.module.css';
+import Sidepanel from './Sidepanel';
+import Backdrop from '../Backdrop';
 
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
 
 export default function ChargerLocations(props) {
+  const [selectedStation, setSelectedStation] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const [findLocation, setFindLocation] = useState([]);
   const [viewport, setViewport] = useState({
     latitude: 65.0121,
     longitude: 25.4652,
     width: '100%',
-    height: '80vh',
-    zoom: 4,
-    bearing: 0,
-    pitch: 0,
+    height: '90vh',
+    zoom: 5,
   });
 
-  const [selectedStation, setSelectedStation] = useState(null);
+  // Reset viewport onclose Popup
+  const resetViewport = () => {
+    setViewport({
+      ...viewport,
+      latitude: 65.0121,
+      longitude: 25.4652,
+      zoom: 6,
+      transitionDuration: 1000,
+    });
+  };
 
-  const clickLocation = (latitude, longitude) => {
+  // Zooms in to clicked location
+  const clickLocation = (latitude, longitude, locationId) => {
     setViewport({
       ...viewport,
       latitude: latitude,
@@ -27,13 +40,55 @@ export default function ChargerLocations(props) {
       zoom: 15,
       transitionDuration: 1000,
     });
+    handleLocationData(locationId);
   };
+
+  // Send location id and data to sidepanel
+  const handleLocationData = (input) => {
+    const dataArray = [...props.data, ...props.moreData];
+    const result = dataArray.find((location) => location.id === input);
+    if (result !== -1) {
+      console.log(result);
+      setFindLocation(result);
+    } else {
+      console.log('error');
+    }
+  };
+
+  // Side Panel functions
+  // ---------------------------------------
+  const sidepanelToggle = () => {
+    if (!isOpen) {
+      setIsOpen(true);
+    } else {
+      setIsOpen(false);
+    }
+  };
+
+  const backdropToggle = () => {
+    setIsOpen(false);
+  };
+
+  let sidepanel;
+  let backdrop;
+  if (isOpen) {
+    sidepanel = (
+      <Sidepanel
+        location={findLocation}
+        click={backdropToggle}
+        charge={props.charge}
+      />
+    );
+    backdrop = <Backdrop click={backdropToggle} />;
+  }
+
+  // ---------------------------------------------
 
   return (
     <div className={styles.container}>
       <MapGl
         {...viewport}
-        mapStyle='mapbox://styles/t9haan01/ckfv13pi20ib319oavdqy4q24'
+        mapStyle='mapbox://styles/t9haan01/ckfz0qfll0sbz19niv1e3c74y'
         onViewportChange={(viewport) => {
           setViewport(viewport);
         }}
@@ -43,56 +98,74 @@ export default function ChargerLocations(props) {
           searchLocation={props.searchLocation}
         />
         <SearchResult
-          checkLogin={props.checkLogin}
           isAuthenticated={props.isAuthenticated}
           searchLocation={props.searchLocation}
-          locationDataSet={props.locationDataSet}
-          clickedLocation={clickLocation}
-          showDropdownMenu={props.showDropdownMenu}
-          hideDropdownMenu={props.hideDropdownMenu}
-          displayMenu={props.displayMenu}
+          clickLocation={clickLocation}
+          data={props.data}
+          moreData={props.moreData}
         />
-        {props.locationDataSet.map((station, index) => (
+        {sidepanel}
+        {backdrop}
+        {props.data.map((station, index) => (
           <Marker
             key={index}
-            latitude={station.AddressInfo.Latitude}
-            longitude={station.AddressInfo.Longitude}>
+            latitude={Number(station.Geometery.latitude)}
+            longitude={Number(station.Geometery.longitude)}>
             <button
               className={styles.icon}
               onClick={(e) => {
                 e.preventDefault();
                 setSelectedStation(station);
+                clickLocation(
+                  Number(station.Geometery.latitude),
+                  Number(station.Geometery.longitude),
+                  station.id
+                );
+                sidepanelToggle();
               }}>
-              <img src='/charging.svg' alt='Charging Station Icon' />
+              <img src='/markerOrange.svg' alt='Charging Station Icon' />
             </button>
           </Marker>
         ))}
-
+        {props.moreData.map((station, index) => (
+          <Marker
+            key={index}
+            latitude={Number(station.Geometery.latitude)}
+            longitude={Number(station.Geometery.longitude)}>
+            <button
+              className={styles.icon}
+              onClick={(e) => {
+                e.preventDefault();
+                setSelectedStation(station);
+                clickLocation(
+                  Number(station.Geometery.latitude),
+                  Number(station.Geometery.longitude),
+                  station.id
+                );
+                sidepanelToggle();
+              }}>
+              <img src='/markerBlue.svg' alt='Charging Station Icon' />
+            </button>
+          </Marker>
+        ))}
         {selectedStation ? (
           <Popup
-            latitude={selectedStation.AddressInfo.Latitude}
-            longitude={selectedStation.AddressInfo.Longitude}
-            onClose={() => setSelectedStation(null)}>
+            anchor='bottom-left'
+            tipSize={2}
+            latitude={Number(selectedStation.Geometery.latitude)}
+            longitude={Number(selectedStation.Geometery.longitude)}
+            onClose={() => {
+              setSelectedStation(null);
+              resetViewport();
+              backdropToggle();
+            }}>
             <div className={styles.popup}>
-              <h3>{selectedStation.AddressInfo.Title}</h3>
-
-              {selectedStation.Connections.map((Connection, index) => {
-                return (
-                  <div key={index}>
-                    <p>
-                      <strong>Connection Type available:</strong>
-                    </p>
-                    <li>
-                      {Connection.ConnectionType.Title} | Level:{' '}
-                      {Connection.Level.Title}
-                    </li>
-                  </div>
-                );
-              })}
+              <h3>{selectedStation.AddressInfo.title}</h3>
+              <p>{selectedStation.AddressInfo.line}</p>
               <p>
-                <strong>Cost:</strong>{' '}
+                {selectedStation.AddressInfo.postcode}{' '}
+                {selectedStation.AddressInfo.town}
               </p>
-              {selectedStation.UsageCost || selectedStation.UsageType.Title}
             </div>
           </Popup>
         ) : null}
@@ -100,8 +173,3 @@ export default function ChargerLocations(props) {
     </div>
   );
 }
-
-// onViewportChange={(viewport) => {
-//   setViewport(viewport);
-// }}
-// mapStyle='mapbox://styles/t9haan01/ckfv13pi20ib319oavdqy4q24'
