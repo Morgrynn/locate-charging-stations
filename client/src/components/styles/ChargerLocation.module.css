@@ -1,0 +1,22 @@
+.container {
+    box-sizing: border-box;
+    /* display: flex; */
+    margin: 0px 5px 10px 5px;
+}
+
+.popup {
+    font-size: 11px;
+    list-style-type: none;
+}
+
+.icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.icon img {
+    width: 20px;
+    height: 20px;
+}
+
