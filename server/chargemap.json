@@ -1,0 +1,133 @@
+{
+    "locations": [
+        {
+            "id": 1,
+            "legend": "public",
+            "AddressInfo": {
+                "title": "Oulun Baari / Neste Oulu Maikkula",
+                "line": "Haaransuontie 1",
+                "town": "Oulu",
+                "postcode": "90240",
+                "country": "Finland",
+                "phone": "",
+                "url": ""
+            },
+            "Geometery":{
+                "latitude": "64.97823",
+                "longitude": "25.561076",
+                "marker":{
+                    "green":"../../images/greenMarker.png",
+                    "red": "../../images/redMarker.png"
+                }
+            },
+            "Connections": {
+                "ConnectType1": {
+                    "speed": "slow",
+                    "type": "Type 2",
+                    "price": "0.20€/min",
+                    "charge": "22kw",
+                    "available": false,
+                    "information": "",
+                    "image": "",
+                    "code": "A4CV"
+                },
+                "ConnectType2": {
+                    "speed": "fast",
+                    "type": "CCS connector",
+                    "price": "18 c/kWh",
+                    "charge": "50-150kw",
+                    "available": true,
+                    "information": "",
+                    "image": "",
+                    "code": "A6CV"
+                }
+            }
+        },
+        {
+            "id": 2,
+            "legend": "high-power",
+            "AddressInfo": {
+                "title": "Motonet Oulu",
+                "line": "Tikkasentie 14",
+                "town": "Oulu",
+                "postcode": "90420",
+                "country": "Finland",
+                "phone": "+358 3 062120",
+                "url": "https://motonet.fi"
+            },
+            "Geometery":{
+                "latitude": "64.958072",
+                "longitude": "25.506",
+                "marker":{
+                    "green":"../../images/greenMarker.png",
+                    "red": "../../images/redMarker.png"
+                }
+            },
+            "Connections": {
+                "ConnectType1": {
+                    "speed": "slow",
+                    "type": "Type 2",
+                    "price": "0.20€/min",
+                    "charge": "22kw",
+                    "available": true,
+                    "information": "",
+                    "image": "",
+                    "code": "A4CV"
+                },
+                "ConnectType2": {
+                    "speed": "fast",
+                    "type": "CCS connector",
+                    "price": "18 c/kWh",
+                    "charge": "50-150kw",
+                    "available": true,
+                    "information": "",
+                    "image": "",
+                    "code": "A6CV"
+                }
+            }
+        },
+        {
+            "id": 3,
+            "legend": "high-power",
+            "AddressInfo": {
+                "title": "Nelosparkki Virtapiste",
+                "line": "Kirkonkyläntie 7",
+                "town": "Ii",
+                "postcode": "95110",
+                "country": "Finland",
+                "phone": "+358 8 7247125",
+                "url": "https://motonet.fi"
+            },
+            "Geometery":{
+                "latitude": "65.583927",
+                "longitude": "25.191458",
+                "marker":{
+                    "green":"../../images/greenMarker.png",
+                    "red": "../../images/redMarker.png"
+                }
+            },
+            "Connections": {
+                "ConnectType1": {
+                    "speed": "slow",
+                    "type": "Type 2",
+                    "price": "0.20€/min",
+                    "charge": "22kw",
+                    "available": true,
+                    "information": "",
+                    "image": "",
+                    "code": "A4CV"
+                },
+                "ConnectType2": {
+                    "speed": "fast",
+                    "type": "CCS connector",
+                    "price": "18 c/kWh",
+                    "charge": "50-150kw",
+                    "available": true,
+                    "information": "",
+                    "image": "",
+                    "code": "A6CV"
+                }
+            }
+        }
+    ]
+}

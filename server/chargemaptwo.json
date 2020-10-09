@@ -1,0 +1,133 @@
+{
+    "locations": [
+        {
+            "id": 10,
+            "isActive": true,
+            "AddressInfo": {
+                "title": "Paljakka Skivillas Oy / Kentso Oy Kelkkavuokraamo",
+                "line": "Paljakkakeskus B ",
+                "town": "Puolanka",
+                "postcode": "89140",
+                "country": "Finland",
+                "phone": "",
+                "url": ""
+            },
+            "Geometery":{
+                "latitude": "64.678243",
+                "longitude": "27.941147",
+                "marker":{
+                    "green":"../../images/greenMarker.png",
+                    "red": "../../images/redMarker.png"
+                }
+            },
+            "Connections": {
+                "ConnectType1": {
+                    "speed": "slow",
+                    "type": "Type 2",
+                    "price": "0.20€/min",
+                    "charge": "22kw",
+                    "available": true,
+                    "information": "",
+                    "image": "",
+                    "code": "A4CV"
+                },
+                "ConnectType2": {
+                    "speed": "fast",
+                    "type": "CCS connector",
+                    "price": "18 c/kWh",
+                    "charge": "50-150kw",
+                    "available": true,
+                    "information": "",
+                    "image": "",
+                    "code": "A6CV"
+                }
+            }
+        },
+        {
+            "id": 11,
+            "isActive": false,
+            "AddressInfo": {
+                "title": "Autotalo Hartikainen",
+                "line": "Syväojankatu 5",
+                "town": "Kajaani",
+                "postcode": "87700",
+                "country": "Finland",
+                "phone": "",
+                "url": ""
+            },
+            "Geometery":{
+                "latitude": "64.214543",
+                "longitude": "27.667297",
+                "marker":{
+                    "green":"../../images/greenMarker.png",
+                    "red": "../../images/redMarker.png"
+                }
+            },
+            "Connections": {
+                "ConnectType1": {
+                    "speed": "slow",
+                    "type": "Type 2",
+                    "price": "0.20€/min",
+                    "charge": "22kw",
+                    "available": true,
+                    "information": "",
+                    "image": "",
+                    "code": "A4CV"
+                },
+                "ConnectType2": {
+                    "speed": "fast",
+                    "type": "CCS connector",
+                    "price": "18 c/kWh",
+                    "charge": "50-150kw",
+                    "available": true,
+                    "information": "",
+                    "image": "",
+                    "code": "A6CV"
+                }
+            }
+        },
+        {
+            "id": 12,
+            "isActive": false,
+            "AddressInfo": {
+                "title": "Korpelan voima latauspiste f325 Fortum C&D",
+                "line": "Siltakatu 11–15",
+                "town": "Kannus",
+                "postcode": "69100",
+                "country": "Finland",
+                "phone": "+358 800 199055",
+                "url": ""
+            },
+            "Geometery":{
+                "latitude": "63.902502",
+                "longitude": "23.917321",
+                "marker":{
+                    "green":"../../images/greenMarker.png",
+                    "red": "../../images/redMarker.png"
+                }
+            },
+            "Connections": {
+                "ConnectType1": {
+                    "speed": "slow",
+                    "type": "Type 2",
+                    "price": "0.20€/min",
+                    "charge": "22kw",
+                    "available": true,
+                    "information": "",
+                    "image": "",
+                    "code": "A4CV"
+                },
+                "ConnectType2": {
+                    "speed": "fast",
+                    "type": "CCS connector",
+                    "price": "18 c/kWh",
+                    "charge": "50-150kw",
+                    "available": true,
+                    "information": "",
+                    "image": "",
+                    "code": "A6CV"
+                }
+            }
+        }
+    ]
+}
