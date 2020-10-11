@@ -12,8 +12,6 @@ export default function SearchResult(props) {
     );
   });
 
-  console.log(filteredLocations);
-
   let displayList = null;
 
   if (props.searchLocation.length !== 0) {

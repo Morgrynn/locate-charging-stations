@@ -1,18 +1,38 @@
 import React from 'react';
 import styles from './Header.module.css';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
-export default function Header() {
-  return (
-    <div className={styles.navbar}>
+export default function Header({ isLoggedIn, loginStatus, onLogout }) {
+  let output;
+  if (isLoggedIn) {
+    output = (
       <nav>
         <ul className={styles.list}>
           <Link to='/' className={styles.active}>
             Locate Charging Station
           </Link>
-          <Link to='/users/login'>Login</Link>
+          <Link to='/' className={styles.active} onClick={onLogout}>
+            Logout {loginStatus.toUpperCase()}
+          </Link>
         </ul>
       </nav>
-    </div>
-  );
+    );
+  } else {
+    output = (
+      <nav>
+        <ul className={styles.list}>
+          <Link to='/' className={styles.active}>
+            Locate Charging Station
+          </Link>
+          <Link to='/users/login' className={styles.active}>
+            Login
+          </Link>
+        </ul>
+      </nav>
+    );
+  }
+
+  return <div className={styles.navbar}>{output}</div>;
 }
