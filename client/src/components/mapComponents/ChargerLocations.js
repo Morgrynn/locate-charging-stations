@@ -43,13 +43,14 @@ export default function ChargerLocations(props) {
     handleLocationData(locationId);
   };
 
-  // Send location id and data to sidepanel
+  // Send location id and data to sidepanel & parent
   const handleLocationData = (input) => {
     const dataArray = [...props.data, ...props.moreData];
     const result = dataArray.find((location) => location.id === input);
     if (result !== -1) {
-      console.log(result);
+      // console.log('Clicked here -> ', result);
       setFindLocation(result);
+      props.parentCallback(result);
     } else {
       console.log('error');
     }

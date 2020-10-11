@@ -1,34 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Register.module.css';
-import axios from 'axios';
-import constants from '../../constants.json';
 
-export default function Register() {
-  const [registerUsername, setRegisterUsername] = useState('');
-  const [registerPassword, setRegisterPassword] = useState('');
-  const [registerEmail, setRegisterEmail] = useState('');
-
-  const register = async (event) => {
-    event.preventDefault();
-
-    try {
-      await axios({
-        url: '/users/register',
-        method: 'post',
-        baseURL: `${constants.baseUrl}`,
-        data: {
-          username: registerUsername,
-          email: registerEmail,
-          password: registerPassword,
-        },
-        withCredentials: true,
-      }).then((res) => console.log('Registered Successfully'));
-    } catch (error) {
-      return console.log(error, 'There was an error registering!');
-    }
-  };
-
+export default function Register(props) {
   return (
     <div className={styles.mainContainer}>
       Registration<Link to='/login'>Back</Link>
@@ -38,27 +12,27 @@ export default function Register() {
           <h1 className={styles.h1}>Create your account</h1>
         </div>
         <div className={styles.formContainer}>
-          <form className={styles.regForm} onSubmit={register}>
+          <form className={styles.regForm} onSubmit={props.register}>
             <input
               className={styles.input}
               type='text'
               placeholder='Enter Username'
               name='username'
-              onChange={(e) => setRegisterUsername(e.target.value)}
+              onChange={props.getRegUsername}
             />
             <input
               className={styles.input}
               type='email'
               placeholder='Enter Email'
               name='email'
-              onChange={(e) => setRegisterEmail(e.target.value)}
+              onChange={props.getRegEmail}
             />
             <input
               className={styles.input}
               type='password'
               placeholder='Enter password'
               name='password'
-              onChange={(e) => setRegisterPassword(e.target.value)}
+              onChange={props.getRegPassword}
             />
             <button className={styles.button} type='submit'>
               Register!

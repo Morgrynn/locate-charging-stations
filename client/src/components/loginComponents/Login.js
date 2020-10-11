@@ -1,39 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './Login.module.css';
-import axios from 'axios';
-import constants from '../../constants.json';
 import imgIcon from '../../images/Electric.png';
 import { Link } from 'react-router-dom';
 
 // TODO
-// make this a modal
+// when login fails
 
 export default function Login(props) {
-  // const [loginUsername, setLoginUsername] = useState('');
-  // const [loginPassword, setLoginPassword] = useState('');
-
-  const login = async (event) => {
-    event.preventDefault();
-    try {
-      await axios({
-        url: '/users/login',
-        method: 'post',
-        baseURL: `${constants.baseUrl}`,
-        auth: {
-          username: props.loginUsername,
-          password: props.loginPassword,
-        },
-        withCredentials: true,
-      }).then((res) => {
-        console.log('Login successful');
-        props.loginSuccess();
-        props.history.push(props.redirectPathOnSuccess);
-      });
-    } catch (error) {
-      return console.log(error, 'There was an error registering!');
-    }
-  };
-
   return (
     <div className={styles.mainContainer}>
       <div className={styles.container}>
@@ -41,7 +14,7 @@ export default function Login(props) {
           <img className={styles.img} src={imgIcon} alt='Electric Charger' />
         </div>
         <div className={styles.authForm}>
-          <form className={styles.form} onSubmit={login}>
+          <form className={styles.form} onSubmit={props.login}>
             <div className={styles.authFormHeader}>
               <h1 className={styles.h1}>Sign in to LocalCharge</h1>
             </div>
@@ -82,10 +55,7 @@ export default function Login(props) {
           </form>
           <p className={styles.loginCallout}>
             New to LocalCharge?{' '}
-            <Link className={styles.linktwo} to='/users/register'>
-              Create an account
-            </Link>
-            .
+            <Link to='/users/register'>Create an account</Link>.
           </p>
         </div>
       </div>

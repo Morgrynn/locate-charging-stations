@@ -3,7 +3,7 @@ import styles from '../styles/AddressCard.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChargingStation } from '@fortawesome/free-solid-svg-icons';
 
-export default function ChargeCard({ charge }) {
+export default function ChargeCard({ charge, location }) {
   return (
     <div className={styles.container}>
       <ul className={styles.list}>
