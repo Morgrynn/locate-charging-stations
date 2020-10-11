@@ -14,31 +14,47 @@
             },
             "Geometery":{
                 "latitude": "64.678243",
-                "longitude": "27.941147",
-                "marker":{
-                    "green":"../../images/greenMarker.png",
-                    "red": "../../images/redMarker.png"
-                }
+                "longitude": "27.941147"
             },
             "Connections": {
                 "ConnectType1": {
                     "speed": "slow",
                     "type": "Type 2",
-                    "price": "0.20€/min",
+                    "price": "0.00€",
+                    "cent": 0,
                     "charge": "22kw",
-                    "available": true,
-                    "information": "",
-                    "image": "",
+                    "power" : 22,
+                    "available": false,
                     "code": "A4CV"
                 },
                 "ConnectType2": {
+                    "speed": "slow",
+                    "type": "Type 2",
+                    "price": "0.20€/min",
+                    "cent": 0.2,
+                    "charge": "22kw",
+                    "power" : 22,
+                    "available": false,
+                    "code": "A5CV"
+                },
+                "ConnectType3": {
+                    "speed": "supercharge",
+                    "type": "CCS connector",
+                    "price": "18 c/kWh",
+                    "cent": 0.18,
+                    "charge": "50-150kw",
+                    "power": 150,
+                    "available": true,
+                    "code": "A8CV"
+                },
+                "ConnectType4": {
                     "speed": "fast",
                     "type": "CCS connector",
                     "price": "18 c/kWh",
+                    "cent": 0.18,
                     "charge": "50-150kw",
+                    "power": 50,
                     "available": true,
-                    "information": "",
-                    "image": "",
                     "code": "A6CV"
                 }
             }
@@ -57,31 +73,47 @@
             },
             "Geometery":{
                 "latitude": "64.214543",
-                "longitude": "27.667297",
-                "marker":{
-                    "green":"../../images/greenMarker.png",
-                    "red": "../../images/redMarker.png"
-                }
+                "longitude": "27.667297"
             },
             "Connections": {
                 "ConnectType1": {
                     "speed": "slow",
                     "type": "Type 2",
-                    "price": "0.20€/min",
+                    "price": "0.00€",
+                    "cent": 0,
                     "charge": "22kw",
+                    "power" : 22,
                     "available": true,
-                    "information": "",
-                    "image": "",
                     "code": "A4CV"
                 },
                 "ConnectType2": {
+                    "speed": "slow",
+                    "type": "Type 2",
+                    "price": "0.20€/min",
+                    "cent": 0.2,
+                    "charge": "22kw",
+                    "power" : 22,
+                    "available": false,
+                    "code": "A5CV"
+                },
+                "ConnectType3": {
+                    "speed": "supercharge",
+                    "type": "CCS connector",
+                    "price": "18 c/kWh",
+                    "cent": 0.18,
+                    "charge": "50-150kw",
+                    "power": 150,
+                    "available": true,
+                    "code": "A8CV"
+                },
+                "ConnectType4": {
                     "speed": "fast",
                     "type": "CCS connector",
                     "price": "18 c/kWh",
+                    "cent": 0.18,
                     "charge": "50-150kw",
+                    "power": 50,
                     "available": true,
-                    "information": "",
-                    "image": "",
                     "code": "A6CV"
                 }
             }
@@ -100,31 +132,47 @@
             },
             "Geometery":{
                 "latitude": "63.902502",
-                "longitude": "23.917321",
-                "marker":{
-                    "green":"../../images/greenMarker.png",
-                    "red": "../../images/redMarker.png"
-                }
+                "longitude": "23.917321"
             },
             "Connections": {
                 "ConnectType1": {
                     "speed": "slow",
                     "type": "Type 2",
-                    "price": "0.20€/min",
+                    "price": "0.00€",
+                    "cent": 0,
                     "charge": "22kw",
-                    "available": true,
-                    "information": "",
-                    "image": "",
+                    "power" : 22,
+                    "available": false,
                     "code": "A4CV"
                 },
                 "ConnectType2": {
+                    "speed": "slow",
+                    "type": "Type 2",
+                    "price": "0.20€/min",
+                    "cent": 0.2,
+                    "charge": "22kw",
+                    "power" : 22,
+                    "available": false,
+                    "code": "A5CV"
+                },
+                "ConnectType3": {
+                    "speed": "supercharge",
+                    "type": "CCS connector",
+                    "price": "18 c/kWh",
+                    "cent": 0.18,
+                    "charge": "50-150kw",
+                    "power": 150,
+                    "available": true,
+                    "code": "A8CV"
+                },
+                "ConnectType4": {
                     "speed": "fast",
                     "type": "CCS connector",
                     "price": "18 c/kWh",
+                    "cent": 0.18,
                     "charge": "50-150kw",
+                    "power": 50,
                     "available": true,
-                    "information": "",
-                    "image": "",
                     "code": "A6CV"
                 }
             }

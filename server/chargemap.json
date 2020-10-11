@@ -2,7 +2,7 @@
     "locations": [
         {
             "id": 1,
-            "legend": "public",
+            "isActive": false,
             "AddressInfo": {
                 "title": "Oulun Baari / Neste Oulu Maikkula",
                 "line": "Haaransuontie 1",
@@ -14,38 +14,54 @@
             },
             "Geometery":{
                 "latitude": "64.97823",
-                "longitude": "25.561076",
-                "marker":{
-                    "green":"../../images/greenMarker.png",
-                    "red": "../../images/redMarker.png"
-                }
+                "longitude": "25.561076"
             },
             "Connections": {
                 "ConnectType1": {
                     "speed": "slow",
                     "type": "Type 2",
-                    "price": "0.20€/min",
+                    "price": "0.00€",
+                    "cent": 0,
                     "charge": "22kw",
-                    "available": false,
-                    "information": "",
-                    "image": "",
+                    "power" : 22,
+                    "available": true,
                     "code": "A4CV"
                 },
                 "ConnectType2": {
+                    "speed": "slow",
+                    "type": "Type 2",
+                    "price": "0.20€/min",
+                    "cent": 0.2,
+                    "charge": "22kw",
+                    "power" : 22,
+                    "available": true,
+                    "code": "A5CV"
+                },
+                "ConnectType3": {
+                    "speed": "supercharge",
+                    "type": "CCS connector",
+                    "price": "18 c/kWh",
+                    "cent": 0.18,
+                    "charge": "50-150kw",
+                    "power": 150,
+                    "available": false,
+                    "code": "A8CV"
+                },
+                "ConnectType4": {
                     "speed": "fast",
                     "type": "CCS connector",
                     "price": "18 c/kWh",
+                    "cent": 0.18,
                     "charge": "50-150kw",
-                    "available": true,
-                    "information": "",
-                    "image": "",
+                    "power": 50,
+                    "available": false,
                     "code": "A6CV"
                 }
             }
         },
         {
             "id": 2,
-            "legend": "high-power",
+            "isActive": false,
             "AddressInfo": {
                 "title": "Motonet Oulu",
                 "line": "Tikkasentie 14",
@@ -57,38 +73,54 @@
             },
             "Geometery":{
                 "latitude": "64.958072",
-                "longitude": "25.506",
-                "marker":{
-                    "green":"../../images/greenMarker.png",
-                    "red": "../../images/redMarker.png"
-                }
+                "longitude": "25.506"
             },
             "Connections": {
                 "ConnectType1": {
                     "speed": "slow",
                     "type": "Type 2",
-                    "price": "0.20€/min",
+                    "price": "0.00€",
+                    "cent": 0,
                     "charge": "22kw",
+                    "power" : 22,
                     "available": true,
-                    "information": "",
-                    "image": "",
                     "code": "A4CV"
                 },
                 "ConnectType2": {
+                    "speed": "slow",
+                    "type": "Type 2",
+                    "price": "0.20€/min",
+                    "cent": 0.2,
+                    "charge": "22kw",
+                    "power" : 22,
+                    "available": true,
+                    "code": "A5CV"
+                },
+                "ConnectType3": {
+                    "speed": "supercharge",
+                    "type": "CCS connector",
+                    "price": "18 c/kWh",
+                    "cent": 0.18,
+                    "charge": "50-150kw",
+                    "power": 150,
+                    "available": false,
+                    "code": "A8CV"
+                },
+                "ConnectType4": {
                     "speed": "fast",
                     "type": "CCS connector",
                     "price": "18 c/kWh",
+                    "cent": 0.18,
                     "charge": "50-150kw",
-                    "available": true,
-                    "information": "",
-                    "image": "",
+                    "power": 50,
+                    "available": false,
                     "code": "A6CV"
                 }
             }
         },
         {
             "id": 3,
-            "legend": "high-power",
+            "isActive": true,
             "AddressInfo": {
                 "title": "Nelosparkki Virtapiste",
                 "line": "Kirkonkyläntie 7",
@@ -100,33 +132,49 @@
             },
             "Geometery":{
                 "latitude": "65.583927",
-                "longitude": "25.191458",
-                "marker":{
-                    "green":"../../images/greenMarker.png",
-                    "red": "../../images/redMarker.png"
-                }
+                "longitude": "25.191458"
             },
             "Connections": {
-                "ConnectType1": {
-                    "speed": "slow",
-                    "type": "Type 2",
-                    "price": "0.20€/min",
-                    "charge": "22kw",
-                    "available": true,
-                    "information": "",
-                    "image": "",
-                    "code": "A4CV"
-                },
-                "ConnectType2": {
-                    "speed": "fast",
-                    "type": "CCS connector",
-                    "price": "18 c/kWh",
-                    "charge": "50-150kw",
-                    "available": true,
-                    "information": "",
-                    "image": "",
-                    "code": "A6CV"
-                }
+                    "ConnectType1": {
+                        "speed": "slow",
+                        "type": "Type 2",
+                        "price": "0.00€",
+                        "cent": 0,
+                        "charge": "22kw",
+                        "power" : 22,
+                        "available": true,
+                        "code": "A4CV"
+                    },
+                    "ConnectType2": {
+                        "speed": "slow",
+                        "type": "Type 2",
+                        "price": "0.20€/min",
+                        "cent": 0.2,
+                        "charge": "22kw",
+                        "power" : 22,
+                        "available": true,
+                        "code": "A5CV"
+                    },
+                    "ConnectType3": {
+                        "speed": "supercharge",
+                        "type": "CCS connector",
+                        "price": "18 c/kWh",
+                        "cent": 0.18,
+                        "charge": "50-150kw",
+                        "power": 150,
+                        "available": false,
+                        "code": "A8CV"
+                    },
+                    "ConnectType4": {
+                        "speed": "fast",
+                        "type": "CCS connector",
+                        "price": "18 c/kWh",
+                        "cent": 0.18,
+                        "charge": "50-150kw",
+                        "power": 50,
+                        "available": false,
+                        "code": "A6CV"
+                    }
             }
         }
     ]
