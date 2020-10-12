@@ -353,15 +353,8 @@ export default function App() {
           path='/history'
           exact
           isAuthenticated={isAuthenticated}
-          render={(props) => (
-            <History
-              {...props}
-              username={loginUsername}
-              password={loginPassword}
-            />
-          )}
+          render={(props) => <History {...props} username={loginUsername} />}
         />
-        <Route exact path='/login/password-reset' component={ResetPassword} />
         <Route
           exact
           path='/users/register'

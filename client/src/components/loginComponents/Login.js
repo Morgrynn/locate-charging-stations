@@ -30,12 +30,7 @@ export default function Login(props) {
                 />
               </div>
               <div>
-                <label className={styles.label}>
-                  Password
-                  <Link className={styles.linkone} to='/login/password-reset'>
-                    Forgot password?
-                  </Link>
-                </label>
+                <label className={styles.label}>Password</label>
                 <input
                   className={styles.input}
                   type='password'

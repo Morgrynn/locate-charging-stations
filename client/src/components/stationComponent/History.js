@@ -3,22 +3,18 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import constants from '../../constants.json';
 
-export default function History({ username, password }) {
+export default function History({ username }) {
   const [userHistory, setUserHistory] = useState();
 
   // View users history
   useEffect(() => {
     try {
       axios({
-        url: '/users/history/',
+        url: '/users/history',
         method: 'get',
         baseURL: `${constants.baseUrl}`,
-        params: {
+        data: {
           username: username,
-        },
-        auth: {
-          username: username,
-          password: password,
         },
       }).then((res) => {
         console.log(res);
