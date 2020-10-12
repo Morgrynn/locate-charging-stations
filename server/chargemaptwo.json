@@ -176,6 +176,478 @@
                     "code": "A6CV"
                 }
             }
+        },
+        {
+            "id": 13,
+            "isActive": false,
+            "AddressInfo": {
+                "title": "Lohiniva",
+                "line": "Lohikuja 10",
+                "town": "Lohiniva",
+                "postcode": "97420",
+                "country": "Finland",
+                "phone": "+358 800 199055",
+                "url": ""
+            },
+            "Geometery":{
+                "latitude": "67.1672724",
+                "longitude": "24.955698"
+            },
+            "Connections": {
+                "ConnectType1": {
+                    "speed": "slow",
+                    "type": "Type 2",
+                    "price": "0.00€",
+                    "cent": 0,
+                    "charge": "22kw",
+                    "power" : 22,
+                    "available": false,
+                    "code": "A4CV"
+                },
+                "ConnectType2": {
+                    "speed": "slow",
+                    "type": "Type 2",
+                    "price": "0.20€/min",
+                    "cent": 0.2,
+                    "charge": "22kw",
+                    "power" : 22,
+                    "available": false,
+                    "code": "A5CV"
+                },
+                "ConnectType3": {
+                    "speed": "supercharge",
+                    "type": "CCS connector",
+                    "price": "18 c/kWh",
+                    "cent": 0.18,
+                    "charge": "50-150kw",
+                    "power": 150,
+                    "available": true,
+                    "code": "A8CV"
+                },
+                "ConnectType4": {
+                    "speed": "fast",
+                    "type": "CCS connector",
+                    "price": "18 c/kWh",
+                    "cent": 0.18,
+                    "charge": "50-150kw",
+                    "power": 50,
+                    "available": true,
+                    "code": "A6CV"
+                }
+            }
+        },
+        {
+            "id": 14,
+            "isActive": false,
+            "AddressInfo": {
+                "title": "Hotelli Inari",
+                "line": "Inarintie 40",
+                "town": "Inari",
+                "postcode": "99870‎",
+                "country": "Finland",
+                "phone": "+358 800 199055",
+                "url": ""
+            },
+            "Geometery":{
+                "latitude": "68.9065978",
+                "longitude": "27.0267452"
+            },
+            "Connections": {
+                "ConnectType1": {
+                    "speed": "slow",
+                    "type": "Type 2",
+                    "price": "0.00€",
+                    "cent": 0,
+                    "charge": "22kw",
+                    "power" : 22,
+                    "available": false,
+                    "code": "A4CV"
+                },
+                "ConnectType2": {
+                    "speed": "slow",
+                    "type": "Type 2",
+                    "price": "0.20€/min",
+                    "cent": 0.2,
+                    "charge": "22kw",
+                    "power" : 22,
+                    "available": false,
+                    "code": "A5CV"
+                },
+                "ConnectType3": {
+                    "speed": "supercharge",
+                    "type": "CCS connector",
+                    "price": "18 c/kWh",
+                    "cent": 0.18,
+                    "charge": "50-150kw",
+                    "power": 150,
+                    "available": true,
+                    "code": "A8CV"
+                },
+                "ConnectType4": {
+                    "speed": "fast",
+                    "type": "CCS connector",
+                    "price": "18 c/kWh",
+                    "cent": 0.18,
+                    "charge": "50-150kw",
+                    "power": 50,
+                    "available": true,
+                    "code": "A6CV"
+                }
+            }
+        },
+        {
+            "id": 15,
+            "isActive": false,
+            "AddressInfo": {
+                "title": "Nykarleby Kraftverk",
+                "line": "Sollefteågatan",
+                "town": "Nykarleby",
+                "postcode": "66900",
+                "country": "Finland",
+                "phone": "+358 800 199055",
+                "url": ""
+            },
+            "Geometery":{
+                "latitude": "63.5217536",
+                "longitude": "22.5305179"
+            },
+            "Connections": {
+                "ConnectType1": {
+                    "speed": "slow",
+                    "type": "Type 2",
+                    "price": "0.00€",
+                    "cent": 0,
+                    "charge": "22kw",
+                    "power" : 22,
+                    "available": false,
+                    "code": "A4CV"
+                },
+                "ConnectType2": {
+                    "speed": "slow",
+                    "type": "Type 2",
+                    "price": "0.20€/min",
+                    "cent": 0.2,
+                    "charge": "22kw",
+                    "power" : 22,
+                    "available": false,
+                    "code": "A5CV"
+                },
+                "ConnectType3": {
+                    "speed": "supercharge",
+                    "type": "CCS connector",
+                    "price": "18 c/kWh",
+                    "cent": 0.18,
+                    "charge": "50-150kw",
+                    "power": 150,
+                    "available": true,
+                    "code": "A8CV"
+                },
+                "ConnectType4": {
+                    "speed": "fast",
+                    "type": "CCS connector",
+                    "price": "18 c/kWh",
+                    "cent": 0.18,
+                    "charge": "50-150kw",
+                    "power": 50,
+                    "available": true,
+                    "code": "A6CV"
+                }
+            }
+        },
+        {
+            "id": 16,
+            "isActive": false,
+            "AddressInfo": {
+                "title": "Kauppakeskus Paletti",
+                "line": "Vaasantie 2",
+                "town": "Kyyjärvi",
+                "postcode": "43700",
+                "country": "Finland",
+                "phone": "+358 800 199055",
+                "url": ""
+            },
+            "Geometery":{
+                "latitude": "63.0422421",
+                "longitude": "24.5585091"
+            },
+            "Connections": {
+                "ConnectType1": {
+                    "speed": "slow",
+                    "type": "Type 2",
+                    "price": "0.00€",
+                    "cent": 0,
+                    "charge": "22kw",
+                    "power" : 22,
+                    "available": false,
+                    "code": "A4CV"
+                },
+                "ConnectType2": {
+                    "speed": "slow",
+                    "type": "Type 2",
+                    "price": "0.20€/min",
+                    "cent": 0.2,
+                    "charge": "22kw",
+                    "power" : 22,
+                    "available": false,
+                    "code": "A5CV"
+                },
+                "ConnectType3": {
+                    "speed": "supercharge",
+                    "type": "CCS connector",
+                    "price": "18 c/kWh",
+                    "cent": 0.18,
+                    "charge": "50-150kw",
+                    "power": 150,
+                    "available": true,
+                    "code": "A8CV"
+                },
+                "ConnectType4": {
+                    "speed": "fast",
+                    "type": "CCS connector",
+                    "price": "18 c/kWh",
+                    "cent": 0.18,
+                    "charge": "50-150kw",
+                    "power": 50,
+                    "available": true,
+                    "code": "A6CV"
+                }
+            }
+        },
+        {
+            "id": 17,
+            "isActive": false,
+            "AddressInfo": {
+                "title": "Maaningan OP",
+                "line": "Maaningantie 31",
+                "town": "Maaninka",
+                "postcode": "71750",
+                "country": "Finland",
+                "phone": "+358 800 199055",
+                "url": ""
+            },
+            "Geometery":{
+                "latitude": "63.154965",
+                "longitude": "27.2991032"
+            },
+            "Connections": {
+                "ConnectType1": {
+                    "speed": "slow",
+                    "type": "Type 2",
+                    "price": "0.00€",
+                    "cent": 0,
+                    "charge": "22kw",
+                    "power" : 22,
+                    "available": false,
+                    "code": "A4CV"
+                },
+                "ConnectType2": {
+                    "speed": "slow",
+                    "type": "Type 2",
+                    "price": "0.20€/min",
+                    "cent": 0.2,
+                    "charge": "22kw",
+                    "power" : 22,
+                    "available": false,
+                    "code": "A5CV"
+                },
+                "ConnectType3": {
+                    "speed": "supercharge",
+                    "type": "CCS connector",
+                    "price": "18 c/kWh",
+                    "cent": 0.18,
+                    "charge": "50-150kw",
+                    "power": 150,
+                    "available": true,
+                    "code": "A8CV"
+                },
+                "ConnectType4": {
+                    "speed": "fast",
+                    "type": "CCS connector",
+                    "price": "18 c/kWh",
+                    "cent": 0.18,
+                    "charge": "50-150kw",
+                    "power": 50,
+                    "available": true,
+                    "code": "A6CV"
+                }
+            }
+        },
+        {
+            "id": 18,
+            "isActive": false,
+            "AddressInfo": {
+                "title": "ST1 Honkajoki",
+                "line": "Pohjanmaantie 99",
+                "town": "Honkajoki",
+                "postcode": "38950",
+                "country": "Finland",
+                "phone": "+358 800 199055",
+                "url": ""
+            },
+            "Geometery":{
+                "latitude": "61.993973",
+                "longitude": "22.2417169"
+            },
+            "Connections": {
+                "ConnectType1": {
+                    "speed": "slow",
+                    "type": "Type 2",
+                    "price": "0.00€",
+                    "cent": 0,
+                    "charge": "22kw",
+                    "power" : 22,
+                    "available": false,
+                    "code": "A4CV"
+                },
+                "ConnectType2": {
+                    "speed": "slow",
+                    "type": "Type 2",
+                    "price": "0.20€/min",
+                    "cent": 0.2,
+                    "charge": "22kw",
+                    "power" : 22,
+                    "available": false,
+                    "code": "A5CV"
+                },
+                "ConnectType3": {
+                    "speed": "supercharge",
+                    "type": "CCS connector",
+                    "price": "18 c/kWh",
+                    "cent": 0.18,
+                    "charge": "50-150kw",
+                    "power": 150,
+                    "available": true,
+                    "code": "A8CV"
+                },
+                "ConnectType4": {
+                    "speed": "fast",
+                    "type": "CCS connector",
+                    "price": "18 c/kWh",
+                    "cent": 0.18,
+                    "charge": "50-150kw",
+                    "power": 50,
+                    "available": true,
+                    "code": "A6CV"
+                }
+            }
+        },
+        {
+            "id": 19,
+            "isActive": false,
+            "AddressInfo": {
+                "title": "Hotell & Restaurant Gullvivan",
+                "line": "Fiskövägen",
+                "town": "Åland Islands",
+                "postcode": "",
+                "country": "Finland",
+                "phone": "+358 800 199055",
+                "url": ""
+            },
+            "Geometery":{
+                "latitude": "60.4264511",
+                "longitude": "21.0033872"
+            },
+            "Connections": {
+                "ConnectType1": {
+                    "speed": "slow",
+                    "type": "Type 2",
+                    "price": "0.00€",
+                    "cent": 0,
+                    "charge": "22kw",
+                    "power" : 22,
+                    "available": false,
+                    "code": "A4CV"
+                },
+                "ConnectType2": {
+                    "speed": "slow",
+                    "type": "Type 2",
+                    "price": "0.20€/min",
+                    "cent": 0.2,
+                    "charge": "22kw",
+                    "power" : 22,
+                    "available": false,
+                    "code": "A5CV"
+                },
+                "ConnectType3": {
+                    "speed": "supercharge",
+                    "type": "CCS connector",
+                    "price": "18 c/kWh",
+                    "cent": 0.18,
+                    "charge": "50-150kw",
+                    "power": 150,
+                    "available": true,
+                    "code": "A8CV"
+                },
+                "ConnectType4": {
+                    "speed": "fast",
+                    "type": "CCS connector",
+                    "price": "18 c/kWh",
+                    "cent": 0.18,
+                    "charge": "50-150kw",
+                    "power": 50,
+                    "available": true,
+                    "code": "A6CV"
+                }
+            }
+        },
+        {
+            "id": 20,
+            "isActive": false,
+            "AddressInfo": {
+                "title": "Virtapiste Hanko",
+                "line": "Vuorikatu 4",
+                "town": "Hanko",
+                "postcode": "10900",
+                "country": "Finland",
+                "phone": "+358 800 199055",
+                "url": ""
+            },
+            "Geometery":{
+                "latitude": "59.8242138",
+                "longitude": "22.9687133"
+            },
+            "Connections": {
+                "ConnectType1": {
+                    "speed": "slow",
+                    "type": "Type 2",
+                    "price": "0.00€",
+                    "cent": 0,
+                    "charge": "22kw",
+                    "power" : 22,
+                    "available": false,
+                    "code": "A4CV"
+                },
+                "ConnectType2": {
+                    "speed": "slow",
+                    "type": "Type 2",
+                    "price": "0.20€/min",
+                    "cent": 0.2,
+                    "charge": "22kw",
+                    "power" : 22,
+                    "available": false,
+                    "code": "A5CV"
+                },
+                "ConnectType3": {
+                    "speed": "supercharge",
+                    "type": "CCS connector",
+                    "price": "18 c/kWh",
+                    "cent": 0.18,
+                    "charge": "50-150kw",
+                    "power": 150,
+                    "available": true,
+                    "code": "A8CV"
+                },
+                "ConnectType4": {
+                    "speed": "fast",
+                    "type": "CCS connector",
+                    "price": "18 c/kWh",
+                    "cent": 0.18,
+                    "charge": "50-150kw",
+                    "power": 50,
+                    "available": true,
+                    "code": "A6CV"
+                }
+            }
         }
     ]
 }
