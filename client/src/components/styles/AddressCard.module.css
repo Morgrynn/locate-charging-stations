@@ -16,10 +16,18 @@
 .list{
     list-style: none;
     padding: 5px;
+    font-size: 14px;
 }
 
-.list li {
-    cursor: pointer;
+.chargelist {
+    list-style: none;
+    font-size: 14px;
+    padding: 5px;
+}
+
+.chargelist p {
+    font-weight: bold;
+    font-size: 15px;
 }
 
 .list li:first-child {
