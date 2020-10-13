@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import MapGl, { Marker, Popup } from 'react-map-gl';
-import Searchbar from '../Searchbar';
-import SearchResult from '../SearchResult';
+import Searchbar from './Searchbar';
+import SearchResult from './SearchResult';
 import styles from '../styles/ChargerLocation.module.css';
 import Sidepanel from './Sidepanel';
 import Backdrop from '../Backdrop';
@@ -17,17 +17,20 @@ export default function ChargerLocations(props) {
     longitude: 25.4652,
     width: '100%',
     height: '90vh',
-    zoom: 5,
+    zoom: 4.5,
   });
 
-  // Reset viewport onclose Popup
+  // Variable for marker svg on map
+  // let pin = props.data.map(())
+
+  // Reset viewport onClose Popup
   const resetViewport = () => {
     setViewport({
       ...viewport,
       latitude: 65.0121,
       longitude: 25.4652,
       zoom: 6,
-      transitionDuration: 1000,
+      transitionDuration: 1750,
     });
   };
 
@@ -38,7 +41,7 @@ export default function ChargerLocations(props) {
       latitude: latitude,
       longitude: longitude,
       zoom: 15,
-      transitionDuration: 1000,
+      transitionDuration: 1750,
     });
     handleLocationData(locationId);
   };
@@ -56,8 +59,8 @@ export default function ChargerLocations(props) {
     }
   };
 
+  // ----------------------------------------------
   // Side Panel functions
-  // ---------------------------------------
   const sidepanelToggle = () => {
     if (!isOpen) {
       setIsOpen(true);
