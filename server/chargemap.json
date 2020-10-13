@@ -2,19 +2,19 @@
     "locations": [
         {
             "id": 1,
-            "isActive": false,
+            "markerblue": false,
             "AddressInfo": {
-                "title": "Oulun Baari / Neste Oulu Maikkula",
-                "line": "Haaransuontie 1",
-                "town": "Oulu",
-                "postcode": "90240",
+                "title": "Hesburger Siikalatva Pulkkila",
+                "line": "Jokivarrentie 8",
+                "town": "Siikalatva",
+                "postcode": "92610",
                 "country": "Finland",
                 "phone": "",
                 "url": ""
             },
             "Geometery":{
-                "latitude": "64.97823",
-                "longitude": "25.561076"
+                "latitude": "64.3578766",
+                "longitude": "25.9112519"
             },
             "Connections": {
                 "ConnectType1": {
@@ -61,7 +61,7 @@
         },
         {
             "id": 2,
-            "isActive": false,
+            "markerBlue": true,
             "AddressInfo": {
                 "title": "Motonet Oulu",
                 "line": "Tikkasentie 14",
@@ -120,7 +120,7 @@
         },
         {
             "id": 3,
-            "isActive": true,
+            "markerblue": false,
             "AddressInfo": {
                 "title": "Nelosparkki Virtapiste",
                 "line": "Kirkonkyläntie 7",
@@ -172,14 +172,14 @@
                         "cent": 0.18,
                         "charge": "50-150kw",
                         "power": 50,
-                        "available": false,
+                        "available": true,
                         "code": "A6CV"
                     }
             }
         },
         {
             "id": 4,
-            "isActive": true,
+            "markerblue": false,
             "AddressInfo": {
                 "title": "Liikenneasema Mäntyhovi",
                 "line": "Kaustisentie 1",
@@ -238,7 +238,7 @@
         },
         {
             "id": 5,
-            "isActive": true,
+            "markerblue": false,
             "AddressInfo": {
                 "title": "VÄRE, Matin ja Liisan asema",
                 "line": "Kuopiontie 210",
@@ -297,7 +297,7 @@
         },
         {
             "id": 6,
-            "isActive": true,
+            "markerblue": false,
             "AddressInfo": {
                 "title": "Äänekoski Supercharger",
                 "line": "Suonenjoentie 10",
@@ -356,7 +356,7 @@
         },
         {
             "id": 7,
-            "isActive": true,
+            "markerblue": false,
             "AddressInfo": {
                 "title": "Toijala Supercharger",
                 "line": "Satamatie 43",
@@ -398,7 +398,7 @@
                         "cent": 0.18,
                         "charge": "50-150kw",
                         "power": 150,
-                        "available": false,
+                        "available": true,
                         "code": "A8CV"
                     },
                     "ConnectType4": {
@@ -415,7 +415,7 @@
         },
         {
             "id": 8,
-            "isActive": true,
+            "markerblue": false,
             "AddressInfo": {
                 "title": "Paimio Supercharger",
                 "line": "Länsiportti 1",
@@ -474,7 +474,7 @@
         },
         {
             "id": 9,
-            "isActive": true,
+            "markerblue": false,
             "AddressInfo": {
                 "title": "Pyhtää Supercharger",
                 "line": "Kotitie 10",
@@ -487,6 +487,65 @@
             "Geometery":{
                 "latitude": "60.4833",
                 "longitude": "26.5333"
+            },
+            "Connections": {
+                    "ConnectType1": {
+                        "speed": "slow",
+                        "type": "Type 2",
+                        "price": "0.00€",
+                        "cent": 0,
+                        "charge": "22kw",
+                        "power" : 22,
+                        "available": true,
+                        "code": "A4CV"
+                    },
+                    "ConnectType2": {
+                        "speed": "slow",
+                        "type": "Type 2",
+                        "price": "0.20€/min",
+                        "cent": 0.2,
+                        "charge": "22kw",
+                        "power" : 22,
+                        "available": true,
+                        "code": "A5CV"
+                    },
+                    "ConnectType3": {
+                        "speed": "supercharge",
+                        "type": "CCS connector",
+                        "price": "18 c/kWh",
+                        "cent": 0.18,
+                        "charge": "50-150kw",
+                        "power": 150,
+                        "available": true,
+                        "code": "A8CV"
+                    },
+                    "ConnectType4": {
+                        "speed": "fast",
+                        "type": "CCS connector",
+                        "price": "18 c/kWh",
+                        "cent": 0.18,
+                        "charge": "50-150kw",
+                        "power": 50,
+                        "available": false,
+                        "code": "A6CV"
+                    }
+            }
+        },
+        {
+            "id": 10,
+            "markerblue": false,
+            "AddressInfo": {
+                "title": "ABC Imatra (C&D)",
+                "line": "Tiedonkatu 2",
+                "town": "Imatra",
+                "postcode": "55420",
+                "country": "Finland",
+                "phone": "",
+                "url": ""
+            },
+            "Geometery":{
+                "latitude": "61.1859035",
+                "longitude": "28.7399374"
             },
             "Connections": {
                     "ConnectType1": {
@@ -532,20 +591,79 @@
             }
         },
         {
-            "id": 10,
-            "isActive": true,
+            "id": 101,
+            "markerblue": false,
             "AddressInfo": {
-                "title": "ABC Imatra (C&D)",
-                "line": "Tiedonkatu 2",
-                "town": "Imatra",
-                "postcode": "55420",
+                "title": "Motonet Joensuu",
+                "line": "Kahvila Mokkapojat, Kuurnankatu 1",
+                "town": "Joensuu",
+                "postcode": "80100",
                 "country": "Finland",
                 "phone": "",
                 "url": ""
             },
             "Geometery":{
-                "latitude": "61.1859035",
-                "longitude": "28.7399374"
+                "latitude": "62.6179451",
+                "longitude": "29.7692405"
+            },
+            "Connections": {
+                    "ConnectType1": {
+                        "speed": "slow",
+                        "type": "Type 2",
+                        "price": "0.00€",
+                        "cent": 0,
+                        "charge": "22kw",
+                        "power" : 22,
+                        "available": true,
+                        "code": "A4CV"
+                    },
+                    "ConnectType2": {
+                        "speed": "slow",
+                        "type": "Type 2",
+                        "price": "0.20€/min",
+                        "cent": 0.2,
+                        "charge": "22kw",
+                        "power" : 22,
+                        "available": true,
+                        "code": "A5CV"
+                    },
+                    "ConnectType3": {
+                        "speed": "supercharge",
+                        "type": "CCS connector",
+                        "price": "18 c/kWh",
+                        "cent": 0.18,
+                        "charge": "50-150kw",
+                        "power": 150,
+                        "available": false,
+                        "code": "A8CV"
+                    },
+                    "ConnectType4": {
+                        "speed": "fast",
+                        "type": "CCS connector",
+                        "price": "18 c/kWh",
+                        "cent": 0.18,
+                        "charge": "50-150kw",
+                        "power": 50,
+                        "available": false,
+                        "code": "A6CV"
+                    }
+            }
+        },
+        {
+            "id": 102,
+            "markerblue": false,
+            "AddressInfo": {
+                "title": "Outokumpu, Suomi",
+                "line": "K-Market Citykumpu, Kummunkatu 9",
+                "town": "Outokumpu",
+                "postcode": "83500",
+                "country": "Finland",
+                "phone": "",
+                "url": ""
+            },
+            "Geometery":{
+                "latitude": "62.7265697",
+                "longitude": "29.0139998"
             },
             "Connections": {
                     "ConnectType1": {
