@@ -2,9 +2,16 @@ import React from 'react';
 import styles from '../styles/ChargeVehicle.module.css';
 
 export default function Type1({ station, handleChargeType, username }) {
+  let availableStyles;
+  let notice;
+  let a = station.Connections.ConnectType1.available;
+
+  availableStyles = a ? styles.item : styles.unavailable;
+  notice = a ? styles.noNotice : styles.notice;
+
   return (
     <div
-      className={styles.item}
+      className={availableStyles}
       onClick={() =>
         handleChargeType(
           station.Connections.ConnectType1.code,
@@ -33,6 +40,7 @@ export default function Type1({ station, handleChargeType, username }) {
           </p>
           <p>This has a {station.Connections.ConnectType1.charge} charge</p>
           <p>Costs: {station.Connections.ConnectType1.price}</p>
+          <p className={notice}>Unavailable</p>
         </div>
       </div>
     </div>

@@ -30,8 +30,6 @@ export default function Charge({
   const getDuration = () => {
     let duration = `Time Duration ${hours}:${minutes}:${seconds}`;
     let chargeCost = `${cost} €0.20/min, ${kwCost} €0.18/kWh`;
-    console.log(duration);
-    console.log(chargeCost);
     parentCallback(duration, chargeCost);
   };
 
@@ -84,9 +82,7 @@ export default function Charge({
             onChange={updateCodeValue}
           />
         </div>
-        {/* <input type='text' hidden onChange={updatedb} /> */}
         <div className={styles.timer}>{stopwatch}</div>
-        {/* <div className={styles.energy}>{energy}</div> */}
         <div className={styles.btndiv}>
           {timerOn === false && timerTime === 0 && (
             <button className={styles.submitBtn} type='submit'>
@@ -106,10 +102,14 @@ export default function Charge({
             </button>
           )}
           {timerOn === false && timerTime > 0 && (
-            <button onClick={startTimer}>Resume</button>
+            <button className={styles.resumeBtn} onClick={startTimer}>
+              Resume
+            </button>
           )}
           {timerOn === false && timerTime > 0 && (
-            <button onClick={resetTimer}>Reset</button>
+            <button className={styles.resetBtn} onClick={resetTimer}>
+              Reset
+            </button>
           )}
         </div>
       </form>
