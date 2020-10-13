@@ -27,6 +27,11 @@ export default function Login({ login, getUsername, getPassword, isError }) {
                   name='username'
                   onChange={getUsername}
                 />
+                {isError && (
+                  <div className={styles.divError}>
+                    Username is incorrect or taken
+                  </div>
+                )}
               </div>
               <div>
                 <label className={styles.label}>Password</label>
@@ -37,6 +42,9 @@ export default function Login({ login, getUsername, getPassword, isError }) {
                   name='password'
                   onChange={getPassword}
                 />
+                {isError && (
+                  <div className={styles.divError}>Password is incorrect</div>
+                )}
               </div>
               <div>
                 <input

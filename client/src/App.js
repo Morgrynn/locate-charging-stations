@@ -3,12 +3,12 @@ import { Switch, Route, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import Header from './components/Header';
 import Login from './components/loginComponents/Login';
-import constants from './constants.json';
 import Register from './components/loginComponents/Register';
 import ProtectedRoute from './components/ProtectedRoute';
 import ChargerLocations from './components/mapComponents/ChargerLocations';
 import ChargeVehicle from './components/ChargeVehicle';
 import History from './components/stationComponent/History';
+import constants from './constants.json';
 
 export default function App() {
   const [data, setData] = useState([]);
@@ -40,7 +40,6 @@ export default function App() {
 
   useEffect(() => {
     axios.get(`${constants.baseUrl}/charger/station1`).then((response) => {
-      // console.log('Charger Data: ', response.data);
       setData(response.data);
     });
     getMoreLocations();
@@ -48,7 +47,6 @@ export default function App() {
 
   const getMoreLocations = () => {
     axios.get(`${constants.baseUrl}/charger/station2`).then((response) => {
-      // console.log('More Data: ', response.data);
       setMoreData(response.data);
     });
   };
@@ -82,6 +80,8 @@ export default function App() {
     setIsAuthenticated(false);
     setLoginUsername('');
     setLoginPassword('');
+    setClickedStation([]);
+    history.push('/');
   };
 
   const onSearch = (event) => {
@@ -95,7 +95,7 @@ export default function App() {
     if (isError) {
       interval = setInterval(() => {
         setIsError(false);
-      }, 1200);
+      }, 2000);
     }
     return () => {
       clearInterval(interval);
@@ -144,7 +144,7 @@ export default function App() {
   };
 
   // OnClick Choose Charger Type
-  const handleChargeType = (input, power, cent, username, station) => {
+  const handleChargeType = (input, cent, power, username, station) => {
     setChargeCode(input);
     setPower(power);
     setCent(cent);
@@ -171,19 +171,15 @@ export default function App() {
     event.preventDefault();
     switch (chargeCode) {
       case 'A4CV':
-        console.log('Charge is 22kw. Cost is 0.00€');
         startTimer();
         break;
       case 'A5CV':
-        console.log('Charge is 22kw. Cost is 0.20€/min');
         startTimer();
         break;
       case 'A6CV':
-        console.log('Charge is 50-150kw. Cost is 18c/kWh');
         startTimer();
         break;
       case 'A8CV':
-        console.log('Charge is 50-150kw. Cost is 18c/kWh');
         startTimer();
         break;
       default:
@@ -192,20 +188,19 @@ export default function App() {
   };
 
   // POST to database
-  const postHistory = () => {
-    axios
-      .post(`${constants.baseUrl}/users/history`, {
+  const postHistory = async () => {
+    await axios({
+      url: `${constants.baseUrl}/users/history`,
+      method: 'post',
+      data: {
         username: uname,
-        address:
-          address.AddressInfo.title +
-          address.AddressInfo.line +
-          address.AddressInfo.postcode +
-          address.AddressInfo.town,
+        address: `${address.AddressInfo.title} ${address.AddressInfo.line} ${address.AddressInfo.town}`,
         lengthChargeTime: chargeTime,
         chargeCost: chargeCost,
-      })
+      },
+    })
       .then((res) => {
-        console.log(res);
+        prevCharges();
       })
       .catch((error) => {
         console.log(error);
@@ -223,7 +218,6 @@ export default function App() {
       },
     })
       .then((res) => {
-        // console.log(res);
         setUserHistory(res.data);
       })
       .catch((error) => {
@@ -233,7 +227,6 @@ export default function App() {
 
   // OnClick for button in sidepanel
   const goToCharge = () => {
-    console.log('stationId = ', clickedStation);
     if (isAuthenticated) {
       return history.push('/station');
     } else {
@@ -254,37 +247,20 @@ export default function App() {
           password: loginPassword,
         },
       }).then((response) => {
-        console.log('CLIENT login res ->', response);
-        console.log(response.data);
-        console.log(response.status);
-        console.log(response.statusText);
-        console.log(response.headers);
-        console.log(response.config);
         setIsError(false);
         onLogin();
-        prevCharges();
         history.push('/station');
       });
     } catch (error) {
       setIsError(true);
       if (error.response) {
-        // The request was made and the server responded with a status code
-        // that falls out of the range of 2xx
-        console.log('data ', error.response.data);
         console.log('status ', error.response.status);
-        console.log('header ', error.response.headers);
         console.log('CLIENT login error -> not registered');
       } else if (error.request) {
-        // The request was made but no response was received
-        // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-        // http.ClientRequest in node.js
         console.log('request ', error.request);
       } else {
-        // Something happened in setting up the request that triggered an Error
         console.log('Error', error.message);
       }
-      console.log('config ', error.config);
-      // return console.log(error, 'CLIENT There was an error registering!');
     }
   };
 
@@ -302,8 +278,6 @@ export default function App() {
           password: registerPassword,
         },
       }).then((res) => {
-        console.log('Client register res -> ', res);
-        console.log('Registered Successfully');
         setIsError(false);
         history.push('/users/login');
       });

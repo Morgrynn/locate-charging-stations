@@ -20,52 +20,53 @@ export default function Charge({
   let seconds = ('0' + (Math.floor(timerTime / 1000) % 60)).slice(-2);
   let minutes = ('0' + (Math.floor(timerTime / 60000) % 60)).slice(-2);
   let hours = ('0' + Math.floor(timerTime / 3600000)).slice(-2);
-  let e = '0' + power * (Math.floor(timerTime / 1000) % 60);
-  let c = '0' + power * e * cent;
-  let energy = '0' + power * (Math.floor(timerTime / 60000) % 60);
-  let cost = '0' + power * energy * cent;
-  let kiloWatthour = '0' + power * Math.floor(timerTime / 3600000);
-  let kwCost = '0' + power * kiloWatthour * cent;
+
+  let kwPerMin = power * (timerTime / 60000);
+  let costPerMin = cent * kwPerMin;
+
+  let kiloWatthour = power * (timerTime / 3600000);
+  let kWhCost = kiloWatthour * cent;
 
   const getDuration = () => {
-    let duration = `Time Duration ${hours}:${minutes}:${seconds}`;
-    let chargeCost = `${cost} €0.20/min, ${kwCost} €0.18/kWh`;
+    const duration = `${Math.floor(timerTime / 3600000)}h:${
+      Math.floor(timerTime / 60000) % 60
+    }m:${Math.floor(timerTime / 1000) % 60}s`;
+    let chargeCost;
+    if (power < 40) {
+      chargeCost = `Cost ${costPerMin.toFixed(2)}€/min`;
+    } else {
+      chargeCost = `Cost ${kWhCost.toFixed(2)}€/kWh`;
+    }
     parentCallback(duration, chargeCost);
   };
 
-  let minPerkwDisplay = (
-    <>
-      {' '}
-      <div>Electrical Power {parseFloat(e).toFixed(10)} w</div>
-      <div>Cost for Charger €/sec {parseFloat(c).toFixed(10)}€</div>{' '}
-      <div>Electrical Power {parseFloat(energy).toFixed(10)} kw</div>
-      <div>Cost for Charger 0.20€/min {parseFloat(cost).toFixed(10)}€</div>{' '}
-    </>
-  );
+  let displayCharge;
 
-  let centperkWhDisplay = (
-    <>
-      {' '}
-      <div>Electrical Power {parseFloat(e).toFixed(10)} w</div>
-      <div>Cost for Charger €/sec {parseFloat(c).toFixed(10)}€</div>{' '}
-      <div>Electrical Power {parseFloat(energy).toFixed(10)} kw</div>
-      <div>Cost for Charger 0.20€/min {parseFloat(cost).toFixed(10)}€</div>{' '}
-      <div>Electrical Power {parseFloat(kiloWatthour).toFixed(10)} kWh</div>
-      <div>
-        Cost for Charger 0.18c/kWh {parseFloat(kwCost).toFixed(10)}€
-      </div>{' '}
-    </>
-  );
+  if (power < 40) {
+    displayCharge = (
+      <>
+        <div>Charge {kwPerMin.toFixed(2)} kw</div>
+        <div>Cost {costPerMin.toFixed(2)} €/min </div>
+      </>
+    );
+  } else {
+    displayCharge = (
+      <>
+        <div>Charge {kiloWatthour.toFixed(2)} kWh</div>
+        <div>Cost {kWhCost.toFixed(2)} €/kWh </div>
+      </>
+    );
+  }
 
   let stopwatch = (
     <>
       <div>
         Duration: {hours} : {minutes} : {seconds} : {centiseconds}
       </div>
-      {chargeCode === 'A4CV' && minPerkwDisplay}
-      {chargeCode === 'A5CV' && minPerkwDisplay}
-      {chargeCode === 'A6CV' && centperkWhDisplay}
-      {chargeCode === 'A8CV' && centperkWhDisplay}
+      {chargeCode === 'A4CV' && displayCharge}
+      {chargeCode === 'A5CV' && displayCharge}
+      {chargeCode === 'A6CV' && displayCharge}
+      {chargeCode === 'A8CV' && displayCharge}
     </>
   );
   return (
@@ -96,19 +97,30 @@ export default function Charge({
               onClick={() => {
                 stopTimer();
                 getDuration();
-                postHistory();
               }}>
               Stop
             </button>
           )}
+
           {timerOn === false && timerTime > 0 && (
-            <button className={styles.resumeBtn} onClick={startTimer}>
+            <button
+              className={styles.resumeBtn}
+              onClick={() => {
+                getDuration();
+                startTimer();
+              }}>
               Resume
             </button>
           )}
           {timerOn === false && timerTime > 0 && (
-            <button className={styles.resetBtn} onClick={resetTimer}>
-              Reset
+            <button
+              className={styles.resetBtn}
+              onClick={() => {
+                postHistory();
+                stopTimer();
+                resetTimer();
+              }}>
+              Stop
             </button>
           )}
         </div>

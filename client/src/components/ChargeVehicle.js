@@ -26,6 +26,8 @@ export default function ChargeVehicle({
   timerTime,
   parentCallback,
   postHistory,
+  startClock,
+  stopClock,
 }) {
   const getDate = new Date();
   // get the date as a string
@@ -34,7 +36,6 @@ export default function ChargeVehicle({
   const time = getDate.toLocaleTimeString();
 
   let display;
-
   if (station.length < 1) {
     display = (
       <div className={styles.ifContainer}>
@@ -103,6 +104,8 @@ export default function ChargeVehicle({
               timerTime={timerTime}
               parentCallback={parentCallback}
               postHistory={postHistory}
+              startClock={startClock}
+              stopClock={stopClock}
             />
           </div>
         </div>

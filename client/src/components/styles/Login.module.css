@@ -114,6 +114,10 @@
   overflow: visible;
 }
 
+.divError {
+  color: red;
+}
+
 .linkone {
   float: right;
   font-size: 12px;

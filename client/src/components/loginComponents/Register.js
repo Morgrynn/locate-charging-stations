@@ -22,6 +22,11 @@ export default function Register(props) {
                 name='username'
                 onChange={props.getRegUsername}
               />
+              {props.isError && (
+                <div className={styles.divError}>
+                  Username minimum 4 characters long
+                </div>
+              )}
             </div>
             <div className={styles.div}>
               <input
@@ -31,6 +36,9 @@ export default function Register(props) {
                 name='email'
                 onChange={props.getRegEmail}
               />
+              {props.isError && (
+                <div className={styles.divError}>Must have valid email</div>
+              )}
             </div>
             <div className={styles.div}>
               <input
@@ -40,6 +48,11 @@ export default function Register(props) {
                 name='password'
                 onChange={props.getRegPassword}
               />
+              {props.isError && (
+                <div className={styles.divError}>
+                  Password minimum 7 characters long
+                </div>
+              )}
             </div>
             <div className={styles.div}>
               <button className={styles.button} type='submit'>
