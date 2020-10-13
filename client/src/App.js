@@ -4,7 +4,6 @@ import axios from 'axios';
 import Header from './components/Header';
 import Login from './components/loginComponents/Login';
 import constants from './constants.json';
-import ResetPassword from './components/loginComponents/ResetPassword';
 import Register from './components/loginComponents/Register';
 import ProtectedRoute from './components/ProtectedRoute';
 import ChargerLocations from './components/mapComponents/ChargerLocations';
@@ -34,10 +33,11 @@ export default function App() {
   const [address, setAddress] = useState('');
   const [chargeTime, setChargeTime] = useState('0');
   const [chargeCost, setChargeCost] = useState('0');
+  const [userHistory, setUserHistory] = useState([]);
+  const [isError, setIsError] = useState(false);
 
   const history = useHistory();
 
-  // `https://api.openchargemap.io/v3/poi/?output=json&countrycode=FI&maxresults=20`
   useEffect(() => {
     axios.get(`${constants.baseUrl}/charger/station1`).then((response) => {
       // console.log('Charger Data: ', response.data);
@@ -80,17 +80,27 @@ export default function App() {
 
   const onLogout = () => {
     setIsAuthenticated(false);
-  };
-
-  const onLoginFail = () => {
-    setIsAuthenticated(isAuthenticated);
-    console.log('Login failed!');
+    setLoginUsername('');
+    setLoginPassword('');
   };
 
   const onSearch = (event) => {
     event.preventDefault();
     setSearchLocation(event.target.value);
   };
+
+  // Quick fix to handle input errors for reg and login forms
+  useEffect(() => {
+    let interval = null;
+    if (isError) {
+      interval = setInterval(() => {
+        setIsError(false);
+      }, 1200);
+    }
+    return () => {
+      clearInterval(interval);
+    };
+  }, [isError]);
 
   // -------------------------------------------
   // Timer functions
@@ -125,11 +135,6 @@ export default function App() {
     setChargeCode('');
   };
 
-  // let centiseconds = ('0' + (Math.floor(timerTime / 10) % 100)).slice(-2);
-  // let seconds = ('0' + (Math.floor(timerTime / 1000) % 60)).slice(-2);
-  // let minutes = ('0' + (Math.floor(timerTime / 60000) % 60)).slice(-2);
-  // let hours = ('0' + Math.floor(timerTime / 3600000)).slice(-2);
-
   // -------------------------------------------
 
   // Get data from ChargerLocations
@@ -161,6 +166,7 @@ export default function App() {
     setChargeCode(event);
   };
 
+  // Switch to choose what charge user wants to use
   const startCharge = (event) => {
     event.preventDefault();
     switch (chargeCode) {
@@ -185,8 +191,8 @@ export default function App() {
     }
   };
 
+  // POST to database
   const postHistory = () => {
-    console.log('HISTORY ', uname, address, chargeTime, chargeCost);
     axios
       .post(`${constants.baseUrl}/users/history`, {
         username: uname,
@@ -206,6 +212,25 @@ export default function App() {
       });
   };
 
+  // GET user history from database
+  const prevCharges = () => {
+    axios({
+      url: `${constants.baseUrl}/users/history/${loginUsername}`,
+      method: 'get',
+      auth: {
+        username: loginUsername,
+        password: loginPassword,
+      },
+    })
+      .then((res) => {
+        // console.log(res);
+        setUserHistory(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   // OnClick for button in sidepanel
   const goToCharge = () => {
     console.log('stationId = ', clickedStation);
@@ -216,7 +241,7 @@ export default function App() {
     }
   };
 
-  // Login page function
+  // POST to database
   const login = async (event) => {
     event.preventDefault();
     try {
@@ -228,12 +253,20 @@ export default function App() {
           username: loginUsername,
           password: loginPassword,
         },
-      }).then((res) => {
-        // console.log('CLIENT login res ->', res);
+      }).then((response) => {
+        console.log('CLIENT login res ->', response);
+        console.log(response.data);
+        console.log(response.status);
+        console.log(response.statusText);
+        console.log(response.headers);
+        console.log(response.config);
+        setIsError(false);
         onLogin();
+        prevCharges();
         history.push('/station');
       });
     } catch (error) {
+      setIsError(true);
       if (error.response) {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx
@@ -252,16 +285,12 @@ export default function App() {
       }
       console.log('config ', error.config);
       // return console.log(error, 'CLIENT There was an error registering!');
-      if (error.response.status === 401) {
-        console.log('Unauthorized do something here!');
-      }
     }
   };
 
-  // Register page function
+  // POST to database
   const register = async (event) => {
     event.preventDefault();
-
     try {
       await axios({
         url: '/users/register',
@@ -275,9 +304,11 @@ export default function App() {
       }).then((res) => {
         console.log('Client register res -> ', res);
         console.log('Registered Successfully');
+        setIsError(false);
         history.push('/users/login');
       });
     } catch (error) {
+      setIsError(true);
       return console.log(error, 'There was an error registering!');
     }
   };
@@ -314,10 +345,10 @@ export default function App() {
               login={login}
               logout={onLogout}
               loginSuccess={onLogin}
-              loginFail={onLoginFail}
               getUsername={getUsername}
               getPassword={getPassword}
               isAuthenticated={isAuthenticated}
+              isError={isError}
               {...routeProps}
             />
           )}
@@ -350,10 +381,16 @@ export default function App() {
           )}
         />
         <ProtectedRoute
-          path='/history'
+          path='/users'
           exact
           isAuthenticated={isAuthenticated}
-          render={(props) => <History {...props} username={loginUsername} />}
+          component={Login}
+        />
+        <ProtectedRoute
+          path='/users/history'
+          exact
+          isAuthenticated={isAuthenticated}
+          render={(props) => <History {...props} userHistory={userHistory} />}
         />
         <Route
           exact
@@ -365,6 +402,7 @@ export default function App() {
               getRegEmail={getRegEmail}
               getRegPassword={getRegPassword}
               getRegUsername={getRegUsername}
+              isError={isError}
             />
           )}
         />
