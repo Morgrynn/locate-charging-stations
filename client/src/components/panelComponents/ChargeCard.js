@@ -2,24 +2,28 @@ import React from 'react';
 import styles from '../styles/AddressCard.module.css';
 
 export default function ChargeCard({ location }) {
-  let available;
-  if (location.Connections.ConnectType1.available) {
-    available = <li>Available to use</li>;
-  } else {
-    available = <li>In use</li>;
-  }
+  let a = location.Connections.ConnectType1;
+  let b = location.Connections.ConnectType2;
+  let c = location.Connections.ConnectType3;
+  let d = location.Connections.ConnectType4;
 
   return (
     <div className={styles.container}>
-      <ul className={styles.list}>
-        <li>Charge & Drive</li>
+      <ol className={styles.chargelist}>
+        <p>Charge & Drive</p>
         <li>
-          {location.Connections.ConnectType1.type}{' '}
-          {location.Connections.ConnectType1.speed} charge:{' '}
-          {location.Connections.ConnectType1.charge}
+          Charge: {a.charge} {a.available ? 'Available' : 'In use'}
         </li>
-        {available}
-      </ul>
+        <li>
+          Charge: {b.charge} {b.available ? 'Available' : 'In use'}
+        </li>
+        <li>
+          Charge: {c.charge} {c.available ? 'Available' : 'In use'}
+        </li>
+        <li>
+          Charge: {d.charge} {d.available ? 'Available' : 'In use'}
+        </li>
+      </ol>
     </div>
   );
 }
