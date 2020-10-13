@@ -1,12 +1,11 @@
 import React from 'react';
-import styles from './Login.module.css';
+import styles from '../styles/Login.module.css';
 import imgIcon from '../../images/Electric.png';
 import { Link } from 'react-router-dom';
 
-// TODO
-// when login fails
-
-export default function Login(props) {
+export default function Login({ login, getUsername, getPassword, isError }) {
+  let error;
+  error = isError ? styles.error : styles.input;
   return (
     <div className={styles.mainContainer}>
       <div className={styles.container}>
@@ -14,7 +13,7 @@ export default function Login(props) {
           <img className={styles.img} src={imgIcon} alt='Electric Charger' />
         </div>
         <div className={styles.authForm}>
-          <form className={styles.form} onSubmit={props.login}>
+          <form className={styles.form} onSubmit={login}>
             <div className={styles.authFormHeader}>
               <h1 className={styles.h1}>Sign in to LocalCharge</h1>
             </div>
@@ -22,21 +21,21 @@ export default function Login(props) {
               <div>
                 <label className={styles.label}>Username</label>
                 <input
-                  className={styles.input}
+                  className={error}
                   type='text'
                   placeholder='Enter Username'
                   name='username'
-                  onChange={props.getUsername}
+                  onChange={getUsername}
                 />
               </div>
               <div>
                 <label className={styles.label}>Password</label>
                 <input
-                  className={styles.input}
+                  className={error}
                   type='password'
                   placeholder='Enter Password'
                   name='password'
-                  onChange={props.getPassword}
+                  onChange={getPassword}
                 />
               </div>
               <div>

@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import styles from './Register.module.css';
+import styles from '../styles/Register.module.css';
 
 export default function Register(props) {
+  let error;
+  error = props.isError ? styles.error : styles.input;
   return (
     <div className={styles.mainContainer}>
       <div className={styles.responsive}>
@@ -14,7 +16,7 @@ export default function Register(props) {
           <form className={styles.regForm} onSubmit={props.register}>
             <div className={styles.div}>
               <input
-                className={styles.input}
+                className={error}
                 type='text'
                 placeholder='Enter Username'
                 name='username'
@@ -23,7 +25,7 @@ export default function Register(props) {
             </div>
             <div className={styles.div}>
               <input
-                className={styles.input}
+                className={error}
                 type='email'
                 placeholder='Enter Email'
                 name='email'
@@ -32,7 +34,7 @@ export default function Register(props) {
             </div>
             <div className={styles.div}>
               <input
-                className={styles.input}
+                className={error}
                 type='password'
                 placeholder='Enter password'
                 name='password'
@@ -40,12 +42,12 @@ export default function Register(props) {
               />
             </div>
             <div className={styles.div}>
-              <div className={styles.buttonLink}>
-                <Link to='/users/login'>Back</Link>
-              </div>
               <button className={styles.button} type='submit'>
                 Register!
               </button>
+              <div className={styles.buttonLink}>
+                <Link to='/users/login'>Back</Link>
+              </div>
             </div>
           </form>
         </div>
