@@ -60,10 +60,13 @@ router.post('/history', (req, res) => {
       if (err) {
         res.send({ err: err });
       }
-      // console.log('location db ', dbresults);
-      res.sendStatus(201);
+      console.log('location db ', dbresults);
+      res.send({ dbresults });
+      // res.sendStatus(201);
     }
   );
+  // console.log('history req ', req.body);
+  // res.send(req)
 });
 
 // POST -  register users to database to /users/register

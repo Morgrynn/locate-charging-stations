@@ -20,7 +20,7 @@ app.use('/charger', locationComponent);
 Promise.all([
   db.query(`CREATE TABLE IF NOT EXISTS users(
     id_users INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(32),
+    username VARCHAR(32) UNIQUE,
     password VARCHAR(256), 
     email VARCHAR(256)
 )`),
