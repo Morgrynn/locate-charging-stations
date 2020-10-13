@@ -1,7 +1,6 @@
 const express = require('express');
 const db = require('../db');
 const router = express.Router();
-const { v4: uuidv4 } = require('uuid');
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const passportHttp = require('passport-http');
@@ -9,11 +8,12 @@ const passportHttp = require('passport-http');
 // Middleware function to check username and password given against ones stored in database
 passport.use(
   new passportHttp.BasicStrategy(function (username, password, done) {
-    db.query('SELECT id, username, password FROM users WHERE username = ?', [
-      username,
-    ])
+    db.query(
+      'SELECT id_users, username, password FROM users WHERE username = ?',
+      [username]
+    )
       .then((dbResults) => {
-        console.log('dbResults: ', dbResults);
+        // console.log('dbResults: ', dbResults);
         if (dbResults.length == 0) {
           return done(null, false);
         }
@@ -26,35 +26,48 @@ passport.use(
           }
         });
       })
-      .catch((dbError) => done(err));
+      .catch((dbError) => done('dbError -> ', dbError));
   })
 );
 
-// GET all unprotected user information from /users/unprotected-users
-// router.get('/unprotected-users', (req, res) => {
-//   console.log('Successful GET FROM: /users/unprotected-users ');
-//   res.send('Hello There! You are not logged in.');
-// });
-
 // Get all protected users information from /users/protected-users
 // passport middleware gets passed to protected data
-// router.get(
-//   '/protected-users',
-//   passport.authenticate('basic', { session: false }),
-//   (req, res) => {
-//     console.log('Successful GET FROM: /users/protected-users ');
-//     db.query('SELECT * FROM users')
-//       .then((results) => {
-//         res.json({ users: results });
-//       })
-//       .catch(() => {
-//         res.sendStatus(500);
-//       });
-//   }
-// );
+router.get(
+  '/history/:username',
+  passport.authenticate('basic', { session: false }),
+  (req, res) => {
+    db.query('SELECT * FROM location WHERE username = ?', [req.params.username])
+      .then((results) => {
+        res.json(results);
+      })
+      .catch(() => {
+        res.sendStatus(500);
+      });
+  }
+);
 
-const saltRounds = 10;
+// POST user data to history table
+router.post('/history', (req, res) => {
+  let username = req.body.username;
+  let address = req.body.address;
+  let chargetime = req.body.lengthChargeTime;
+  let cost = req.body.chargeCost;
+
+  db.query(
+    'INSERT INTO location (username, address, lengthChargeTime, chargeCost, chargeDate, currentTime) VALUES (?,?,?,?, CURDATE(), CURTIME())',
+    [username, address, chargetime, cost],
+    function (err, dbresults, fields) {
+      if (err) {
+        res.send({ err: err });
+      }
+      // console.log('location db ', dbresults);
+      res.sendStatus(201);
+    }
+  );
+});
+
 // POST -  register users to database to /users/register
+const saltRounds = 10;
 router.post('/register', (req, res) => {
   let username = req.body.username.trim();
   let password = req.body.password.trim();
@@ -70,6 +83,9 @@ router.post('/register', (req, res) => {
       'SELECT * FROM users WHERE (username = ? OR email = ?)',
       [username, email],
       function (err, results, fields) {
+        if (err) {
+          res.send({ err: err });
+        }
         if (results.length == 0) {
           console.log('Username does not exist', username);
           bcrypt
@@ -81,13 +97,13 @@ router.post('/register', (req, res) => {
               )
             )
             .then((dbResults) => {
-              console.log('dbResults: ', dbResults);
+              // console.log('dbResults: ', dbResults);
               res.sendStatus(201);
+              // res.redirect('/login');
             })
             .catch((error) => res.sendStatus(500));
         }
         if (results.length > 0) res.send('Username OR Email Already Exists');
-        if (err) throw err;
       }
     );
   } else {
@@ -103,10 +119,10 @@ router.post(
   '/login',
   passport.authenticate('basic', { session: false }),
   (req, res) => {
-    console.log(req.user);
     // res.send('Successful authenticated');
-    // res.json({ users: req.user });
-    res.sendStatus(200);
+    // res.json();
+    // res.sendStatus(200);
+    res.send({ users: req.user });
   }
 );
 
