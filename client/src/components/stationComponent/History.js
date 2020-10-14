@@ -25,8 +25,8 @@ export default function History({ userHistory }) {
             {userHistory.map((data, index) => {
               return (
                 <tr key={index} className={styles.tr}>
+                  <td className={styles.td}>{data.chargeDate.slice(0, 10)}</td>
                   <td className={styles.td}>{data.address}</td>
-                  <td className={styles.td}>{data.chargeDate}</td>
                   <td className={styles.td}>{data.chargeCost}</td>
                   <td className={styles.td}>{data.lengthChargeTime}</td>
                 </tr>

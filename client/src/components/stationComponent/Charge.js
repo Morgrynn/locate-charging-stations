@@ -21,10 +21,10 @@ export default function Charge({
   let minutes = ('0' + (Math.floor(timerTime / 60000) % 60)).slice(-2);
   let hours = ('0' + Math.floor(timerTime / 3600000)).slice(-2);
 
-  let kwPerMin = power * (timerTime / 60000);
+  let kwPerMin = (power * (timerTime / 60000)) / 100;
   let costPerMin = cent * kwPerMin;
 
-  let kiloWatthour = power * (timerTime / 3600000);
+  let kiloWatthour = (power * (timerTime / 3600000)) / 1000;
   let kWhCost = kiloWatthour * cent;
 
   const getDuration = () => {
@@ -33,7 +33,7 @@ export default function Charge({
     }m:${Math.floor(timerTime / 1000) % 60}s`;
     let chargeCost;
     if (power < 40) {
-      chargeCost = `Cost ${costPerMin.toFixed(2)}€/min`;
+      chargeCost = `Cost ${costPerMin.toFixed(2)}€`;
     } else {
       chargeCost = `Cost ${kWhCost.toFixed(2)}€/kWh`;
     }
@@ -46,7 +46,7 @@ export default function Charge({
     displayCharge = (
       <>
         <div>Charge {kwPerMin.toFixed(2)} kw</div>
-        <div>Cost {costPerMin.toFixed(2)} €/min </div>
+        <div>Cost {costPerMin.toFixed(2)} € </div>
       </>
     );
   } else {
@@ -79,6 +79,7 @@ export default function Charge({
           <input
             type='text'
             size='4'
+            readOnly
             value={chargeCode}
             onChange={updateCodeValue}
           />

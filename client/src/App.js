@@ -74,13 +74,14 @@ export default function App() {
   const onLogin = () => {
     setIsAuthenticated(true);
     setLoginStatus(loginUsername);
+    prevCharges();
   };
 
   const onLogout = () => {
     setIsAuthenticated(false);
     setLoginUsername('');
     setLoginPassword('');
-    setClickedStation([]);
+    // setClickedStation([]);
     history.push('/');
   };
 
