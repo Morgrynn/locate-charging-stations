@@ -1,4 +1,4 @@
-![banner] (https://github.com/Morgrynn/locate-charging-stations/blob/master/banner.png)
+
 
 
 # LocalCharge 
