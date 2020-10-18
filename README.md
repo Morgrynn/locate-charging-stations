@@ -69,10 +69,12 @@ Visit Website [LocaleCharge] (http://localcharge2020-789789.s3-website-us-east-1
 [(Back to top)](#table-of-contents)
 
 ## Screenshot
+[(Back to top)](#table-of-contents)
 
 ![home-screen](screenshot.png)
 
 ## Gif 
+[(Back to top)](#table-of-contents)
 
 ![locale-charge-gif](localecharge.gif)
 
