@@ -1,5 +1,8 @@
 ![banner](https://github.com/Morgrynn/locate-charging-stations/blob/master/banner.png)
 
+
+![npm](https://img.shields.io/npm/v/npm)
+
 # LocaleCharge 
 Visit Website [LocaleCharge] (http://localcharge2020-789789.s3-website-us-east-1.amazonaws.com)
 
