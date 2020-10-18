@@ -1,4 +1,4 @@
-![banner](assets/banner.png)
+![banner](banner.png)
 
 
 ![npm](https://img.shields.io/npm/v/npm)
@@ -70,11 +70,11 @@ Visit Website [LocaleCharge] (http://localcharge2020-789789.s3-website-us-east-1
 
 ## Screenshot
 
-![home-screen](assets/screenshot.png)
+![home-screen](screenshot.png)
 
 ## Gif 
 
-![locale-charge-gif](assets/localecharge.gif)
+![locale-charge-gif](localecharge.gif)
 
 
 
