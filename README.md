@@ -1,4 +1,4 @@
-![banner](https://github.com/Morgrynn/locate-charging-stations/blob/master/assets/banner.png)
+![banner](assets/banner.png)
 
 
 ![npm](https://img.shields.io/npm/v/npm)
@@ -70,11 +70,11 @@ Visit Website [LocaleCharge] (http://localcharge2020-789789.s3-website-us-east-1
 
 ## Screenshot
 
-![home-screen](https://github.com/Morgrynn/locate-charging-stations/blob/master/assets/screenshot.png)
+![home-screen](assets/screenshot.png)
 
 ## Gif 
 
-![locale-charge-gif](https://github.com/Morgrynn/locate-charging-stations/blob/master/assets/localecharge.gif)
+![locale-charge-gif](assets/localecharge.gif)
 
 
 
