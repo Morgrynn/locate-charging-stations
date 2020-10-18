@@ -1,13 +1,14 @@
 ![banner](banner.png)
 
 
-![npm](https://img.shields.io/npm/v/npm)
 
 <!-- # LocaleCharge 
 Visit Website [LocaleCharge] (http://localcharge2020-789789.s3-website-us-east-1.amazonaws.com) -->
 
 # Locate Charging Stations
 > This is a graded exercise to showcase Reactjs, Expressjs, Nodejs and MySql
+
+![npm](https://img.shields.io/npm/v/npm)
 
 # Table of contents
 
